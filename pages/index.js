@@ -17,6 +17,18 @@ export default function Home() {
           Here I share my thoughts on software development, projects, and more.
         </p>
 
+        <div className="social-icons">
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+            Twitter
+          </a>
+        </div>
+
         <div className="grid">
           <a href="/projects" className="card">
             <h3>Projects &rarr;</h3>
@@ -120,11 +132,30 @@ export default function Home() {
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
 
-        .grid {
+        .social-icons {
+          margin-top: 2rem;
           display: flex;
-          align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .icon {
+          padding: 0.5rem;
+          border: 1px solid #eaeaea;
+          border-radius: 10px;
+          text-decoration: none;
+          color: inherit;
+          transition: color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .icon:hover,
+        .icon:focus,
+        .icon:active {
+          color: #0070f3;
+          border-color: #0070f3;
+        }
+
+        .grid {
 
           max-width: 800px;
           margin-top: 3rem;
