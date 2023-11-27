@@ -23,7 +23,7 @@ export default function Home() {
             <p>Explore my portfolio and recent work.</p>
           </a>
 
-          <a href="#" className="card">
+          <a href="/blog" className="card">
             <h3>Blog &rarr;</h3>
             <p>Read my latest articles and tutorials.</p>
           </a>
