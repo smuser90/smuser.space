@@ -29,6 +29,9 @@ export default function Home() {
           <a href="https://twitter.com/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
+          <a href="https://stackoverflow.com/users/your-user-id" target="_blank" rel="noopener noreferrer" className="icon">
+            <FontAwesomeIcon icon={faStackOverflow} />
+          </a>
         </div>
 
         <div className="grid">
