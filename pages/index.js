@@ -28,7 +28,7 @@ export default function Home() {
             <p>Read my latest articles and tutorials.</p>
           </a>
 
-          <a href="#" className="card">
+          <a href="/about" className="card">
             <h3>About Me &rarr;</h3>
             <p>Learn more about my journey and experience.</p>
           </a>
