@@ -14,17 +14,17 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          Here I share my thoughts on software development, projects, and more.
+          Topics include Bytes, Bots, and Backyards.
         </p>
 
         <div className="social-icons">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+          <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
             GitHub
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+          <a href="https://linkedin.com/in/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
             LinkedIn
           </a>
-          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon">
+          <a href="https://twitter.com/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
             Twitter
           </a>
         </div>
