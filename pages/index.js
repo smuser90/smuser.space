@@ -4,13 +4,13 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>My Personal Blog</title>
+        <title>Bytes, Bots, and Backyards</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to My Blog
+          Smuser's Home Page
         </h1>
 
         <p className="description">
@@ -37,7 +37,7 @@ export default function Home() {
 
       <footer>
         <footer>
-          <p>© 2023 My Personal Blog. All rights reserved.</p>
+          <p>© 2023 Sam "smuser" Musso.</p>
         </footer>
       </footer>
 
