@@ -8,13 +8,13 @@ const DancingRobot = () => {
       left: '50%',
       transform: 'translateX(-50%)',
     }}>
-      <div style={{
+      <div id="robot-body" style={{
         width: '50px',
         height: '100px',
         backgroundColor: 'gray',
         border: '1px solid black',
       }} />
-      <div style={{
+      <div id="robot-left-arm" style={{
         width: '20px',
         height: '50px',
         backgroundColor: 'gray',
@@ -23,7 +23,7 @@ const DancingRobot = () => {
         left: '15px',
         border: '1px solid black',
       }} />
-      <div style={{
+      <div id="robot-right-arm" style={{
         width: '20px',
         height: '50px',
         backgroundColor: 'gray',
@@ -32,7 +32,7 @@ const DancingRobot = () => {
         right: '15px',
         border: '1px solid black',
       }} />
-      <div style={{
+      <div id="robot-left-leg" style={{
         width: '20px',
         height: '50px',
         backgroundColor: 'gray',
@@ -41,7 +41,7 @@ const DancingRobot = () => {
         left: '0',
         border: '1px solid black',
       }} />
-      <div style={{
+      <div id="robot-right-leg" style={{
         width: '20px',
         height: '50px',
         backgroundColor: 'gray',
