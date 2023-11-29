@@ -21,14 +21,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <header className="header">
         <h1 className="title">
           sm userspace
         </h1>
-
-        <div className="description">
-          <pre><code className="language-json">{descriptionStr}</code></pre>
-        </div>
 
         <div className="social-icons">
           <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
@@ -40,6 +36,12 @@ export default function Home() {
           <a href="https://stackoverflow.com/users/4312368/sam-musso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faStackOverflow} />
           </a>
+        </div>
+      </header>
+
+      <main>
+        <div className="description">
+          <pre><code className="language-json">{descriptionStr}</code></pre>
         </div>
 
         <div className="grid">
