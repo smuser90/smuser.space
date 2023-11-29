@@ -26,9 +26,9 @@ export default function Home() {
           sm userspace
         </h1>
 
-        <p className="description">
+        <div className="description">
           <pre><code className="language-json">{descriptionStr}</code></pre>
-        </p>
+        </div>
 
         <div className="social-icons">
           <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
