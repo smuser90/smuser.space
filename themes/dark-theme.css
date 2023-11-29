@@ -26,9 +26,7 @@ a:active {
 footer,
 .icon,
 .card {
-  border-color: var(--border-color);
-  border-width: 1px;
-  border-style: solid;
+  /* Removed border properties */
 }
 
 .card {
@@ -39,7 +37,7 @@ footer,
 
 /* Specific style for social icons in dark theme */
 .icon {
-  border: 1px solid #ffffff; /* Light border for dark theme */
+  /* Removed border property */
   svg {
     fill: #e0e0e0; /* Lighten up the SVG fill color */
   }
