@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
@@ -43,6 +44,7 @@ export default function Home() {
 
 
 <Footer />
+<Script src="https://plausible.io/js/script.js" strategy="lazyOnload" />
 
     </div>
   )
