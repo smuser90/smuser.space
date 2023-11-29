@@ -39,6 +39,6 @@ footer,
 .icon {
   /* Removed border property */
   svg {
-    fill: #e0e0e0; /* Lighten up the SVG fill color */
+    fill: #F8F8F8; /* Slightly off white fill color for the icons */
   }
 }
