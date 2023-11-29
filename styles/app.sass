@@ -2,10 +2,12 @@
 // Only put non-color specific styles in here. 
 // Color specific styles should go in ./themes/dark-theme.css
 
-html, body
+html, body, .container
   height: 100%
   margin: 0
   padding: 0
+  display: flex
+  flex-direction: column
 
 // Styles for social icons
 .social-icons
@@ -64,6 +66,7 @@ footer
   justify-content: center
   align-items: center
   margin-top: auto // Pushes the footer to the bottom
+  flex-shrink: 0
 
 main
   padding: 0 0.5rem
