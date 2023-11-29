@@ -40,4 +40,7 @@ footer,
 /* Specific style for social icons in dark theme */
 .icon {
   border: 1px solid #ffffff; /* Light border for dark theme */
+  svg {
+    fill: #e0e0e0; /* Lighten up the SVG fill color */
+  }
 }
