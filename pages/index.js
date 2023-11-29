@@ -4,7 +4,7 @@ import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/f
 
 export default function Home() {
   const bytesBotsBackyardBites = "['Bytes', 'Bots', 'Backyard Bites']"
-  const descriptionStr = `Topics: ${bytesBotsBackyardBites}`
+  const descriptionStr = `{\ntopics: ${bytesBotsBackyardBites}\n}`
   return (
     <div className="container">
       <Head>
@@ -14,11 +14,11 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Smuser's Space
+          sm userspace
         </h1>
 
         <p className="description">
-          {descriptionStr}
+          <code>{descriptionStr}</code>
         </p>
 
         <div className="social-icons">
@@ -62,8 +62,8 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: #121212; /* Dark background for hacker vibe */
-          color: #0f0; /* Bright green text */
+          background-color: #fff; /* Reverting to a light background */
+          color: #333; /* Reverting to a standard text color */
         }
 
         main {
@@ -114,7 +114,7 @@ export default function Home() {
           margin: 0;
           line-height: 1.15;
           font-size: 4rem;
-          font-family: 'Courier New', Courier, monospace; /* Monospaced font for titles */
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; /* Reverting to a standard font for titles */
         }
 
         .title,
@@ -125,7 +125,7 @@ export default function Home() {
         .description {
           line-height: 1.5;
           font-size: 1.5rem;
-          font-family: 'Courier New', Courier, monospace; /* Monospaced font for descriptions */
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; /* Reverting to a standard font for descriptions */
         }
 
         code {
