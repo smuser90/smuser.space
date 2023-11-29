@@ -1,98 +1,107 @@
-// NOTE for AI Assistants: Only put non-color specific styles in here. Color specific styles should go in ./themes/dark-theme.css
+// NOTE FOR AI ASSISTANTS!!: 
+// Only put non-color specific styles in here. 
+// Color specific styles should go in ./themes/dark-theme.css
 
 html, body
   height: 100%
   margin: 0
   padding: 0
-  overflow: hidden // Prevent scrollbars when not necessary
-
-.container
-  min-height: 100vh
-  padding: 0 0.5rem
-  overflow: hidden // Prevent scrollbars when not necessary
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  align-items: center
-
-@media (max-width: 800px)
-  .description
-    max-width: 100%
-    font-size: 1.2rem
-    padding: 1rem
-    box-sizing: border-box
 
 // Styles for social icons
 .social-icons
   display: flex
   justify-content: center
-  align-items: center // Align items vertically
-  margin-top: 0 // Remove the top margin to align with the title
+  align-items: center
+  margin-top: 0
 
 .icon
   margin: 0 0.5rem
-  font-size: 1.5rem // Adjust the font size to control the size of the icon
+  font-size: 1.5rem
   transition: color 0.15s ease, border-color 0.15s ease
-  display: inline-block // Ensure the icon is treated as a block-level element
-  width: 1.5rem // Set a fixed width for the icon
-  height: 1.5rem // Set a fixed height for the icon
+  display: inline-block
+  width: 1.5rem
+  height: 1.5rem
 
   svg
-    width: 100% // Ensure the SVG fills the width of the icon
-    height: 100% // Ensure the SVG fills the height of the icon
+    width: 100%
+    height: 100%
 
-// Styles for the grid of cards
 .grid
   display: flex
   flex-direction: row
   justify-content: space-between
   margin: 3rem 0
-  overflow-x: auto // Allow horizontal scrolling only when necessary
+  overflow-x: auto
 
-@media (max-width: 800px)
-  .grid
-    flex-direction: column // Stack cards vertically on small screens
-    align-items: center // Center cards when stacked
-    overflow-x: hidden // Hide horizontal scrollbar on small screens
+.card 
+  box-sizing: border-box
+  padding-left: 1rem
+  border-radius: 0.5rem
 
-  .card
-    max-width: 100% 
-    width: 100% 
-    margin-bottom: 1rem 
+.header
+  width: 100%
+  padding: 0.4rem
+  display: flex
+  justify-content: space-between
+  align-items: center
 
-@media (min-width: 800px)
-  .card
-    margin-left: 0.5rem
-    max-width: 100%
-    min-width: 600px
+.header .title
+  margin-left: 1rem
 
+.header .social-icons
+  margin-right: 1rem
+
+.description
+  max-width: 100vw
+  font-size: 1.2rem
+  padding: 1rem
+  box-sizing: border-box
 
 footer
   width: 100%
-  height: 100px
+  height: 50px
   display: flex
   justify-content: center
   align-items: center
 
 main
-  flex: 1
+  padding: 0 0.5rem
+  overflow: hidden
   display: flex
   flex-direction: column
-  justify-content: center
+  justify-content: start
+  align-items: center
 
-@media (max-width: 800px)
-  .header
+@media (max-width: 800px) // mobile specific styles
+  .grid
+    flex-direction: column 
+    align-items: center 
+    overflow-x: hidden 
+    min-width: 90vw
+    
+  .card
     width: 100%
-    padding: 0.4rem 
-    display: flex
-    justify-content: space-between
-    align-items: center
+    margin-bottom: 1rem
+    padding: 0.5rem
+    padding-left: 1.5rem
+
+
+  .description
+    width: 90vw
+    font-size: 0.7rem
+    padding: 1rem
+    box-sizing: border-box
 
   .header .title
-    margin-left: 1rem
     font-size: 1.2rem
 
-  .header .social-icons
-    margin-right: 1rem
-    .icon
-      font-size: 1.2rem
+  .icon
+    font-size: 1.2rem
+
+@media (min-width: 800px) // non-mobile specific styles
+  .grid
+    min-width: 600px
+
+  .card
+    margin-left: 0.5rem
+    min-width: 25vw
