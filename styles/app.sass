@@ -3,9 +3,11 @@
 // Color specific styles should go in ./themes/dark-theme.css
 
 html, body
-  height: 100%
+  min-height: 100%
   margin: 0
   padding: 0
+  display: flex
+  flex-direction: column
 
 // Styles for social icons
 .social-icons
@@ -63,6 +65,7 @@ footer
   display: flex
   justify-content: center
   align-items: center
+  margin-top: auto // Pushes the footer to the bottom
 
 main
   padding: 0 0.5rem
@@ -71,6 +74,7 @@ main
   flex-direction: column
   justify-content: start
   align-items: center
+  flex: 1 0 auto // Allows the main content to grow and fill the available space
 
 @media (max-width: 800px) // mobile specific styles
   .grid
