@@ -37,8 +37,8 @@ footer,
 
 /* Specific style for social icons in dark theme */
 .icon {
-  /* Removed border property */
+  color: #F8F8F8; /* Slightly off white color for the icons */
   svg {
-    fill: #F8F8F8; /* Slightly off white fill color for the icons */
+    fill: currentColor; /* Use the current font color for SVG fill */
   }
 }
