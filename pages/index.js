@@ -155,6 +155,12 @@ export default function Home() {
           text-decoration: none;
           color: inherit;
           transition: color 0.15s ease, border-color 0.15s ease;
+          border: 1px solid transparent; /* Add a transparent border by default */
+        }
+
+        /* Add styles specific for the dark theme */
+        .dark-theme .icon {
+          border-color: #ffffff; /* Light border for dark theme */
         }
 
         .grid {
