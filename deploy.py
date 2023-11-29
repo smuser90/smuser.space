@@ -26,7 +26,7 @@ def upload_files_to_s3(bucket_name, directory):
 
 if __name__ == '__main__':
     # Define the name of your S3 bucket
-    bucket_name = 'your-bucket-name'
+    bucket_name = 'smuser.space'
     
     # Define the directory to upload
     directory_to_upload = 'out/'
