@@ -34,11 +34,12 @@ html, body
 
 // Styles for the grid of cards
 .grid
-  display: grid
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
-  gap: 1rem
+  display: flex
+  flex-direction: column
+  justify-content: space-between
   max-width: 800px
   margin-top: 3rem
+  height: 100%
 
 @media (max-width: 800px)
   .grid
