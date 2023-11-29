@@ -71,8 +71,6 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: #fff; /* Reverting to a light background */
-          color: #333; /* Reverting to a standard text color */
         }
 
         main {
@@ -87,7 +85,6 @@ export default function Home() {
         footer {
           width: 100%;
           height: 100px;
-          border-top: 1px solid #eaeaea;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -109,7 +106,6 @@ export default function Home() {
         }
 
         .title a {
-          color: #0070f3;
           text-decoration: none;
         }
 
@@ -138,7 +134,6 @@ export default function Home() {
         }
 
         code {
-          background: #fafafa; /* Ensure this is the only background color for the code block */
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
@@ -156,18 +151,10 @@ export default function Home() {
 
         .icon {
           padding: 0.5rem;
-          border: 1px solid #eaeaea;
           border-radius: 10px;
           text-decoration: none;
           color: inherit;
           transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .icon:hover,
-        .icon:focus,
-        .icon:active {
-          color: #0070f3;
-          border-color: #0070f3;
         }
 
         .grid {
@@ -185,17 +172,7 @@ export default function Home() {
           text-align: left;
           color: inherit;
           text-decoration: none;
-          border: 1px solid #eaeaea;
           border-radius: 10px;
-          box-shadow: 0 0 0 1px #eaeaea;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
         }
 
         .card h3 {
