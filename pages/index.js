@@ -4,8 +4,7 @@ import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
+import Header from '../components/Header'
 
 import { useEffect } from 'react'
 
@@ -23,24 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="header" style={{ position: 'absolute', top: 0, zIndex: 1000 }}>
-        <h1 className="title">
-          SM Userspace {"</>"}
-        </h1>
-
-        <div className="social-icons">
-          <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-          <a href="https://linkedin.com/in/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a href="https://stackoverflow.com/users/4312368/sam-musso" target="_blank" rel="noopener noreferrer" className="icon">
-            <FontAwesomeIcon icon={faStackOverflow} />
-          </a>
-        </div>
-
-      </header>
+      <Header />
 
       <main>
         <div className="description">
