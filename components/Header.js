@@ -10,7 +10,7 @@ const Header = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <div style={{ width: '25px', height: '25px', borderRadius: '50%', overflow: 'hidden' }}>
+      <div style={{ width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden' }}>
         <Image
           src="/images/headshot.jfif"
           alt="Headshot"
