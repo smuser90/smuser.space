@@ -1,4 +1,7 @@
 /* Dark theme styles */
+
+.footer {
+  background-color: var(--card-background-color);
 :root {
   --background-color: #121212; /* Dark background */
   --text-color: #e0e0e0; /* Light text */
