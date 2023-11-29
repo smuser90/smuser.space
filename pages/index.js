@@ -21,7 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="header">
+      <header className="header" style={{ position: 'absolute', top: 0, zIndex: 1000 }}>
         <h1 className="title">
           SM Userspace {"</>"}
         </h1>
