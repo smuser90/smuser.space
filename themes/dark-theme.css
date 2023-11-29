@@ -35,6 +35,10 @@ footer,
 
 /* You can add more dark theme styles as needed */
 
+.header {
+  background-color: #333; /* Much darker grey background */
+}
+
 /* Specific style for social icons in dark theme */
 .icon {
   color: #F8F8F8; /* Slightly off white color for the icons */
