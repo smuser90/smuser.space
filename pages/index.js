@@ -4,7 +4,7 @@ import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/f
 
 export default function Home() {
   const bytesBotsBackyardBites = ["Bytes", "Bots", "Backyard Bites"]
-  const descriptionStr = JSON.stringify({ topics: bytesBotsBackyardBites }, null, 2)
+  const descriptionStr = `{\n\t"topics": ${JSON.stringify(bytesBotsBackyardBites)}\n}`
   return (
     <div className="container">
       <Head>
