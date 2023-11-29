@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
@@ -9,6 +10,7 @@ import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/f
 import { useEffect } from 'react'
 
 export default function Home() {
+  const router = useRouter();
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -46,17 +48,17 @@ export default function Home() {
           <pre><code className="language-json">{descriptionStr}</code></pre>
         </div>
         <div className="grid">
-          <a href="/projects" className="card">
+          <div className="card" onClick={() => router.push('/projects')}>
             <h3>Projects &rarr;</h3>
-          </a>
+          </div>
 
-          <a href="/blog" className="card">
+          <div className="card" onClick={() => router.push('/blog')}>
             <h3>Blog &rarr;</h3>
-          </a>
+          </div>
 
-          <a href="/about" className="card">
+          <div className="card" onClick={() => router.push('/about')}>
             <h3>About &rarr;</h3>
-          </a>
+          </div>
         </div>
       </main>
 
