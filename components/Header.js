@@ -9,8 +9,8 @@ const Header = () => (
       <title>Sam Musso</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <div style={{ width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden' }}>
+    <div className="header-container">
+      <div className="header-image">
         <Image
           src="/images/headshot.jfif"
           alt="Headshot"
