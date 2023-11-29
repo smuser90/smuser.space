@@ -4,7 +4,7 @@
   --text-color: #e0e0e0; /* Light text */
   --link-color: #bb86fc; /* Light purple for links */
   --link-hover-color: #3700B3; /* Darker purple for link hover state */
-  --border-color: #292929; /* Dark border for elements */
+  --border-color: rgb(235, 226, 226); /* Dark border for elements */
   --card-background-color: #1e1e1e; /* Slightly lighter background for cards */
 }
 
@@ -27,6 +27,8 @@ footer,
 .icon,
 .card {
   border-color: var(--border-color);
+  border-width: 1px;
+  border-style: solid;
 }
 
 .card {
