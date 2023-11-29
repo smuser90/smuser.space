@@ -1,6 +1,7 @@
 import os
 import boto3
 import logging
+import mimetypes
 from botocore.exceptions import NoCredentialsError
 
 # Configure logging
@@ -27,8 +28,11 @@ def upload_files_to_s3(bucket_name, directory):
                 full_path = os.path.join(subdir, file)
                 with open(full_path, 'rb') as data:
                     try:
-                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory):].lstrip(os.sep))
-                        logging.info(f"File {full_path} uploaded to {bucket_name}")
+                        # Guess the MIME type of the file
+                        content_type = mimetypes.guess_type(full_path)[0] or 'application/octet-stream'
+                        # Set the correct content type when uploading the file
+                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory):].lstrip(os.sep), ExtraArgs={'ContentType': content_type})
+                        logging.info(f"File {full_path} uploaded to {bucket_name} with content type {content_type}")
                     except NoCredentialsError:
                         logging.error("Credentials not available")
                         return
