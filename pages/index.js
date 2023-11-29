@@ -1,8 +1,16 @@
 import Head from 'next/head'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
+// Import additional languages if needed
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
+import { useEffect } from 'react'
+
 export default function Home() {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
   const bytesBotsBackyardBites = ["Bytes", "Bots", "Backyard Bites"]
   const descriptionStr = `{\n\t"topics": ${JSON.stringify(bytesBotsBackyardBites)}    \n}`
   return (
@@ -18,7 +26,7 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          <pre><code className="json">{descriptionStr}</code></pre>
+          <pre><code className="language-json">{descriptionStr}</code></pre>
         </p>
 
         <div className="social-icons">
