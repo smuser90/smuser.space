@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Prism from 'prismjs'
+import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
