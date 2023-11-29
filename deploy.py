@@ -1,6 +1,10 @@
 import os
 import boto3
+import logging
 from botocore.exceptions import NoCredentialsError
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def upload_files_to_s3(bucket_name, directory):
     """
@@ -11,18 +15,27 @@ def upload_files_to_s3(bucket_name, directory):
     # Create an S3 client
     s3_client = boto3.client('s3')
     
-    # Walk through the directory
-    for subdir, dirs, files in os.walk(directory):
-        for file in files:
-            full_path = os.path.join(subdir, file)
-            with open(full_path, 'rb') as data:
-                try:
-                    s3_client.upload_fileobj(data, bucket_name, full_path[len(directory)+1:])
-                    print(f"File {full_path} uploaded to {bucket_name}")
-                except NoCredentialsError:
-                    print("Credentials not available")
-                except Exception as e:
-                    print(f"Failed to upload {full_path}: {e}")
+    # Check if the directory exists
+    if not os.path.isdir(directory):
+        logging.error(f"The directory {directory} does not exist.")
+        return
+
+    try:
+        # Walk through the directory
+        for subdir, dirs, files in os.walk(directory):
+            for file in files:
+                full_path = os.path.join(subdir, file)
+                with open(full_path, 'rb') as data:
+                    try:
+                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory)+1:])
+                        logging.info(f"File {full_path} uploaded to {bucket_name}")
+                    except NoCredentialsError:
+                        logging.error("Credentials not available")
+                        return
+                    except Exception as e:
+                        logging.exception(f"Failed to upload {full_path}: {e}")
+    except Exception as e:
+        logging.exception(f"An error occurred while processing the directory {directory}: {e}")
 
 if __name__ == '__main__':
     # Define the name of your S3 bucket
