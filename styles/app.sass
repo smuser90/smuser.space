@@ -16,16 +16,16 @@
 
 .icon
   margin: 0 0.5rem
-  font-size: 2rem // Make sure this is not set to 0 or a very small value
+  font-size: 1.5rem // Adjust the font size to control the size of the icon
   color: #000 // Set a default color that is visible against the background
   transition: color 0.15s ease, border-color 0.15s ease
   display: inline-block // Ensure the icon is treated as a block-level element
-  width: auto // Ensure the SVG has a width
-  height: 1em // Ensure the SVG has a height relative to the font size
+  width: 1.5rem // Set a fixed width for the icon
+  height: 1.5rem // Set a fixed height for the icon
 
   svg
-    width: 100% // Ensure the SVG fills the width of its container
-    height: auto // Ensure the SVG height is proportional to its width
+    width: 100% // Ensure the SVG fills the width of the icon
+    height: 100% // Ensure the SVG fills the height of the icon
 
   &:hover
     color: #0070f3 // Ensure this color is different from the background
