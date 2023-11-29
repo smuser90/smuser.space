@@ -16,11 +16,12 @@
 
 .icon
   margin: 0 0.5rem
-  font-size: 2rem
+  font-size: 2rem // Make sure this is not set to 0 or a very small value
+  color: #000 // Set a default color that is visible against the background
   transition: color 0.15s ease, border-color 0.15s ease
 
   &:hover
-    color: #0070f3
+    color: #0070f3 // Ensure this color is different from the background
 
 // Styles for the grid of cards
 .grid
