@@ -34,3 +34,8 @@ footer,
 }
 
 /* You can add more dark theme styles as needed */
+
+/* Specific style for social icons in dark theme */
+.icon {
+  border: 1px solid #ffffff; /* Light border for dark theme */
+}
