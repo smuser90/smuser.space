@@ -6,6 +6,7 @@ import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
+import DancingRobot from '../components/DancingRobot'
 
 import { useEffect } from 'react'
 
@@ -63,6 +64,7 @@ export default function Home() {
       </main>
 
       <footer>
+          <DancingRobot />
           <p>© 2023 Sam "smuser" Musso.</p>
       </footer>
 
