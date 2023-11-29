@@ -17,13 +17,13 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Bytes, Bots, and Backyard Bites</title>
+        <title>Sam Musso's Userspace</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header className="header">
         <h1 className="title">
-          sm userspace
+          SM Userspace {"</>"}
         </h1>
 
         <div className="social-icons">
@@ -42,6 +42,7 @@ export default function Home() {
 
       <main>
         <div className="description">
+
           <pre><code className="language-json">{descriptionStr}</code></pre>
         </div>
         <div className="grid">
@@ -60,9 +61,7 @@ export default function Home() {
       </main>
 
       <footer>
-        <footer>
           <p>© 2023 Sam "smuser" Musso.</p>
-        </footer>
       </footer>
 
     </div>
