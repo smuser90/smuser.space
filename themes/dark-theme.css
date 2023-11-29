@@ -26,6 +26,11 @@ a:active {
 
 .card {
   background-color: var(--card-background-color);
+  transition: background-color 0.3s ease;
+}
+
+.card:hover {
+  background-color: #2a2a2a; /* Lightened background color for hover state */
 }
 
 .header {
