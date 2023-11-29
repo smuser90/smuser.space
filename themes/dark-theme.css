@@ -1,0 +1,36 @@
+/* Dark theme styles */
+:root {
+  --background-color: #121212; /* Dark background */
+  --text-color: #e0e0e0; /* Light text */
+  --link-color: #bb86fc; /* Light purple for links */
+  --link-hover-color: #3700B3; /* Darker purple for link hover state */
+  --border-color: #292929; /* Dark border for elements */
+  --card-background-color: #1e1e1e; /* Slightly lighter background for cards */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: var(--link-hover-color);
+}
+
+footer,
+.icon,
+.card {
+  border-color: var(--border-color);
+}
+
+.card {
+  background-color: var(--card-background-color);
+}
+
+/* You can add more dark theme styles as needed */
