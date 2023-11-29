@@ -200,10 +200,9 @@ export default function Home() {
           height: 1em;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 800px) {
           .grid {
-            width: 100%;
-            flex-direction: column;
+            grid-template-columns: 1fr; /* Change to single column layout */
           }
         }
       `}</style>
