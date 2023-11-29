@@ -157,12 +157,7 @@ export default function Home() {
           transition: color 0.15s ease, border-color 0.15s ease;
           border: 1px solid transparent; /* Add a transparent border by default */
         }
-
-        /* Updated styles specific for the dark theme */
-        .dark .icon {
-          border-color: #ffffff; /* Light border for dark theme */
-        }
-
+        
         .grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
