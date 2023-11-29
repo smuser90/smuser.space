@@ -3,20 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
 export default function Home() {
+  const bytesBotsBackyardBites = "['Bytes', 'Bots', 'Backyard Bites']"
+  const descriptionStr = `Topics: ${bytesBotsBackyardBites}`
   return (
     <div className="container">
       <Head>
-        <title>Bytes, Bots, and Backyards</title>
+        <title>Bytes, Bots, and Backyard Bites</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Smuser's Home Page
+          Smuser's Space
         </h1>
 
         <p className="description">
-          Topics include Bytes, Bots, and Backyards.
+          {descriptionStr}
         </p>
 
         <div className="social-icons">
@@ -25,9 +27,6 @@ export default function Home() {
           </a>
           <a href="https://linkedin.com/in/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a href="https://twitter.com/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
-            <FontAwesomeIcon icon={faTwitter} />
           </a>
           <a href="https://stackoverflow.com/users/4312368/sam-musso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faStackOverflow} />
@@ -44,7 +43,7 @@ export default function Home() {
           </a>
 
           <a href="/about" className="card">
-            <h3>About Me &rarr;</h3>
+            <h3>About &rarr;</h3>
           </a>
         </div>
       </main>
