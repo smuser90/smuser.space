@@ -45,9 +45,9 @@ export default function Home() {
 
       </main>
 
-      <footer>
-          <p>© 2023 Sam "smuser" Musso.</p>
-      </footer>
+import Footer from '../components/Footer'
+
+<Footer />
 
     </div>
   )
