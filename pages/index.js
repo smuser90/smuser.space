@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 import { useEffect } from 'react'
 
@@ -17,11 +17,6 @@ export default function Home() {
   const descriptionStr = `{\n\t"topics": ${JSON.stringify(bytesBotsBackyardBites)}    \n}`
   return (
     <div className="container">
-      <Head>
-        <title>Sam Musso's Userspace</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Header />
 
       <main>
@@ -29,9 +24,10 @@ export default function Home() {
 
           <pre><code className="language-json">{descriptionStr}</code></pre>
         </div>
+
         <div className="grid">
-          <div className="card" onClick={() => router.push('/projects')}>
-            <h3>Projects &rarr;</h3>
+          <div className="card" onClick={() => router.push('/open-source')}>
+            <h3>Open Source &rarr;</h3>
           </div>
 
           <div className="card" onClick={() => router.push('/blog')}>
@@ -45,7 +41,6 @@ export default function Home() {
 
       </main>
 
-import Footer from '../components/Footer'
 
 <Footer />
 
