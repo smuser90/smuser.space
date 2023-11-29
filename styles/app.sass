@@ -37,6 +37,7 @@ html, body
 
 // Styles for the grid of cards
 .grid
+  min-width: 600px
   display: flex
   flex-direction: row
   justify-content: space-between
@@ -54,15 +55,17 @@ html, body
     max-width: 100% // Make cards full width on small screens
     width: 100% // Ensure cards are the same width as the description
     margin-bottom: 1rem // Add vertical spacing between cards
+    border-radius: 10px
+    padding: 1.5rem
 
 .card
   padding: 1.5rem
   text-align: left
   color: inherit
+  width: 100%
   text-decoration: none
   border-radius: 10px
   transition: color 0.15s ease, border-color 0.15s ease
-  max-width: calc(33.333% - 1rem)
 
 
 // Styles for the footer
