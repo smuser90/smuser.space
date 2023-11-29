@@ -37,13 +37,13 @@ export default function Home() {
             <FontAwesomeIcon icon={faStackOverflow} />
           </a>
         </div>
+
       </header>
 
       <main>
         <div className="description">
           <pre><code className="language-json">{descriptionStr}</code></pre>
         </div>
-
         <div className="grid">
           <a href="/projects" className="card">
             <h3>Projects &rarr;</h3>
