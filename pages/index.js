@@ -62,6 +62,8 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color: #121212; /* Dark background for hacker vibe */
+          color: #0f0; /* Bright green text */
         }
 
         main {
@@ -112,6 +114,7 @@ export default function Home() {
           margin: 0;
           line-height: 1.15;
           font-size: 4rem;
+          font-family: 'Courier New', Courier, monospace; /* Monospaced font for titles */
         }
 
         .title,
@@ -122,6 +125,7 @@ export default function Home() {
         .description {
           line-height: 1.5;
           font-size: 1.5rem;
+          font-family: 'Courier New', Courier, monospace; /* Monospaced font for descriptions */
         }
 
         code {
