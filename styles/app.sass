@@ -15,7 +15,9 @@ html, body
   justify-content: space-between
   align-items: center
 
-// ... (continue converting all the styles from index.js to SASS syntax)
+.description
+  max-width: 100%
+
 // Styles for social icons
 .social-icons
   display: flex
@@ -37,11 +39,9 @@ html, body
 
 // Styles for the grid of cards
 .grid
-  min-width: 600px
   display: flex
   flex-direction: row
   justify-content: space-between
-  max-width: 100%
   margin: 3rem 0
   overflow-x: auto // Allow horizontal scrolling only when necessary
 
@@ -52,20 +52,15 @@ html, body
     overflow-x: hidden // Hide horizontal scrollbar on small screens
 
   .card
-    max-width: 100% // Make cards full width on small screens
-    width: 100% // Ensure cards are the same width as the description
-    margin-bottom: 1rem // Add vertical spacing between cards
+    max-width: 100% 
+    width: 100% 
+    margin-bottom: 1rem 
 
 @media (min-width: 800px)
   .card
     margin-left: 0.5rem
-
-
-@media (max-width: 800px)
-  .card
-    padding: 1rem
-    width: 90%
-    box-sizing: border-box
+    max-width: 100%
+    min-width: 600px
 
 
 footer
