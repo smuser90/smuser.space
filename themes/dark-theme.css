@@ -2,7 +2,7 @@
 :root {
   --background-color: #121212; /* Dark background */
   --text-color: #e0e0e0; /* Light text */
-  --link-color: #bb86fc; /* Light purple for links */
+  --link-color: #ffffff; /* Light purple for links */
   --link-hover-color: #3700B3; /* Darker purple for link hover state */
   --border-color: rgb(235, 226, 226); /* Dark border for elements */
   --card-background-color: #1e1e1e; /* Slightly lighter background for cards */
@@ -14,7 +14,8 @@ body {
 }
 
 a {
-  color: var(--link-color);
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 a:hover,
@@ -23,26 +24,18 @@ a:active {
   color: var(--link-hover-color);
 }
 
-footer,
-.icon,
-.card {
-  /* Removed border properties */
-}
-
 .card {
   background-color: var(--card-background-color);
 }
 
-/* You can add more dark theme styles as needed */
-
 .header {
-  background-color: #333; /* Much darker grey background */
+  background-color: #333;
+  box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.7) 
 }
 
-/* Specific style for social icons in dark theme */
 .icon {
-  color: #F8F8F8; /* Slightly off white color for the icons */
+  color: #F8F8F8; 
   svg {
-    fill: currentColor; /* Use the current font color for SVG fill */
+    fill: currentColor;
   }
 }
