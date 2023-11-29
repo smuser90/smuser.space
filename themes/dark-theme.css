@@ -30,7 +30,7 @@ a:active {
 
 .header {
   background-color: var(--card-background-color);
-  box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.7);
+  box-shadow: 0 2px 4px 0 rgba(30, 30, 30, 0.7);
 }
 
 .icon {
