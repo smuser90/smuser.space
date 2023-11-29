@@ -86,15 +86,19 @@ main
   flex-direction: column
   justify-content: center
 
-.header
-  width: 100%
-  padding: 0.8rem 
-  display: flex
-  justify-content: space-between
-  align-items: center
+@media (max-width: 800px)
+  .header
+    width: 100%
+    padding: 0.4rem 
+    display: flex
+    justify-content: space-between
+    align-items: center
 
-.header .title
-  margin-left: 2rem
+  .header .title
+    margin-left: 1rem
+    font-size: 1.2rem
 
-.header .social-icons
-  margin-right: 2rem
+  .header .social-icons
+    margin-right: 1rem
+    .icon
+      font-size: 1.2rem
