@@ -29,7 +29,7 @@ export default function Home() {
           <a href="https://twitter.com/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
-          <a href="https://stackoverflow.com/users/your-user-id" target="_blank" rel="noopener noreferrer" className="icon">
+          <a href="https://stackoverflow.com/users/4312368/sam-musso" target="_blank" rel="noopener noreferrer" className="icon">
             <FontAwesomeIcon icon={faStackOverflow} />
           </a>
         </div>
@@ -37,17 +37,14 @@ export default function Home() {
         <div className="grid">
           <a href="/projects" className="card">
             <h3>Projects &rarr;</h3>
-            <p>Explore my portfolio and recent work.</p>
           </a>
 
           <a href="/blog" className="card">
             <h3>Blog &rarr;</h3>
-            <p>Read my latest articles and tutorials.</p>
           </a>
 
           <a href="/about" className="card">
             <h3>About Me &rarr;</h3>
-            <p>Learn more about my journey and experience.</p>
           </a>
         </div>
       </main>
