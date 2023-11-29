@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faTwitter, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
 export default function Home() {
-  const bytesBotsBackyardBites = "['Bytes', 'Bots', 'Backyard Bites']"
-  const descriptionStr = `{\ntopics: ${bytesBotsBackyardBites}\n}`
+  const bytesBotsBackyardBites = ["Bytes", "Bots", "Backyard Bites"]
+  const descriptionStr = JSON.stringify({ topics: bytesBotsBackyardBites }, null, 2)
   return (
     <div className="container">
       <Head>
@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          <code>{descriptionStr}</code>
+          <pre><code className="json">{descriptionStr}</code></pre>
         </p>
 
         <div className="social-icons">
