@@ -4,10 +4,12 @@ html, body
   height: 100%
   margin: 0
   padding: 0
+  overflow: hidden // Prevent scrollbars when not necessary
 
 .container
   min-height: 100vh
   padding: 0 0.5rem
+  overflow: hidden // Prevent scrollbars when not necessary
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -40,10 +42,13 @@ html, body
   justify-content: space-between
   max-width: 100%
   margin: 3rem 0
+  overflow-x: auto // Allow horizontal scrolling only when necessary
 
 @media (max-width: 800px)
   .grid
-    grid-template-columns: 1fr
+    flex-direction: column // Stack cards vertically on small screens
+    align-items: center // Center cards when stacked
+    overflow-x: hidden // Hide horizontal scrollbar on small screens
 
 .card
   padding: 1.5rem
