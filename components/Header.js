@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 import Head from 'next/head'
+import Image from 'next/image'
 
 const Header = () => (
   <header className="header" style={{ position: 'absolute', top: 0, zIndex: 1000 }}>
@@ -8,9 +9,18 @@ const Header = () => (
       <title>Sam Musso</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <h1 className="title">
-      SM Userspace {"</>"}
-    </h1>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Image
+        src="/images/headshot.jfif"
+        alt="Headshot"
+        width={50}
+        height={50}
+        className="rounded-full"
+      />
+      <h1 className="title">
+        SM Userspace {"</>"}
+      </h1>
+    </div>
 
     <div className="social-icons">
       <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
