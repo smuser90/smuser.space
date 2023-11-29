@@ -165,14 +165,14 @@ export default function Home() {
 
         .card {
           margin: 1rem;
-          flex-basis: 45%;
+          flex-basis: 30%; /* Increased from 45% to 30% to make cards wider */
           padding: 1.5rem;
           text-align: left;
           color: inherit;
           text-decoration: none;
           border: 1px solid #eaeaea;
           border-radius: 10px;
-          box-shadow: 0 0 0 1px #eaeaea; /* Add a box-shadow to simulate a full border */
+          box-shadow: 0 0 0 1px #eaeaea;
           transition: color 0.15s ease, border-color 0.15s ease;
         }
 
