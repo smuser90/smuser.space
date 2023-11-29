@@ -5,7 +5,7 @@ import mimetypes
 from botocore.exceptions import NoCredentialsError
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def upload_files_to_s3(bucket_name, directory):
     """
