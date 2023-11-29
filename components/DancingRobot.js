@@ -12,6 +12,7 @@ const DancingRobot = () => {
         width: '50px',
         height: '100px',
         backgroundColor: 'gray',
+        border: '1px solid black',
       }} />
       <div style={{
         width: '20px',
@@ -20,6 +21,7 @@ const DancingRobot = () => {
         position: 'absolute',
         top: '50px',
         left: '15px',
+        border: '1px solid black',
       }} />
       <div style={{
         width: '20px',
@@ -28,6 +30,7 @@ const DancingRobot = () => {
         position: 'absolute',
         top: '50px',
         right: '15px',
+        border: '1px solid black',
       }} />
       <div style={{
         width: '20px',
@@ -36,6 +39,7 @@ const DancingRobot = () => {
         position: 'absolute',
         top: '100px',
         left: '0',
+        border: '1px solid black',
       }} />
       <div style={{
         width: '20px',
@@ -44,6 +48,7 @@ const DancingRobot = () => {
         position: 'absolute',
         top: '100px',
         right: '0',
+        border: '1px solid black',
       }} />
     </div>
   );
