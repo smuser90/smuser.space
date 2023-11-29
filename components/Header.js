@@ -10,13 +10,14 @@ const Header = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Image
-        src="/images/headshot.jfif"
-        alt="Headshot"
-        width={50}
-        height={50}
-        className="rounded-full"
-      />
+      <div style={{ width: '25px', height: '25px', borderRadius: '50%', overflow: 'hidden' }}>
+        <Image
+          src="/images/headshot.jfif"
+          alt="Headshot"
+          width={50}
+          height={50}
+        />
+      </div>
       <h1 className="title">
         SM Userspace {"</>"}
       </h1>
