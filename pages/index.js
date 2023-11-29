@@ -172,6 +172,7 @@ export default function Home() {
           text-decoration: none;
           border: 1px solid #eaeaea;
           border-radius: 10px;
+          box-shadow: 0 0 0 1px #eaeaea; /* Add a box-shadow to simulate a full border */
           transition: color 0.15s ease, border-color 0.15s ease;
         }
 
