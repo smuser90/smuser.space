@@ -27,7 +27,7 @@ def upload_files_to_s3(bucket_name, directory):
                 full_path = os.path.join(subdir, file)
                 with open(full_path, 'rb') as data:
                     try:
-                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory)+1:])
+                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory):].lstrip(os.sep))
                         logging.info(f"File {full_path} uploaded to {bucket_name}")
                     except NoCredentialsError:
                         logging.error("Credentials not available")
