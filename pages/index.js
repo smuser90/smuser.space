@@ -6,7 +6,7 @@ import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import '../particles'
+import 'particles.js'
 
 import { useEffect } from 'react'
 
