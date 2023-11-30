@@ -74,10 +74,8 @@ pre
   border-radius: 0.5rem
 
 footer
-  position: absolute
-  bottom: 0
-  margin-top: 0.25rem
-  margin-bottom: 0.25rem
+  position: relative // Change from absolute to relative
+  height: 60px // Specify a height for the footer
   width: 100%
   display: flex
   justify-content: center
@@ -85,7 +83,7 @@ footer
 
 main
   position: relative
-  overflow: hidden
+  overflow: auto // Make main scrollable if content overflows
 
   .main-content
     position: relative
@@ -95,7 +93,8 @@ main
     flex-direction: column
     justify-content: center
     align-items: center
-    flex-grow: 1 // Allows the main content to grow and fill the available space
+    height: calc(100% - 60px) // Deduct the height of the footer
+    overflow: auto // Make main-content scrollable if content overflows
 
 canvas
   position: absolute
