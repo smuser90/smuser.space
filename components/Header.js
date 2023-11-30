@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin, faStackOverflow, faQuora, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faLinkedin, faStackOverflow, faQuora } from '@fortawesome/free-brands-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -30,21 +31,47 @@ const Header = () => (
     </div>
 
     <div className="social-icons">
-      <a href="https://github.com/smuser90" target="_blank" rel="noopener noreferrer" className="icon">
+      <a
+        href="https://github.com/smuser90"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
         <FontAwesomeIcon icon={faGithub} />
       </a>
-      <a href="https://linkedin.com/in/sammusso" target="_blank" rel="noopener noreferrer" className="icon">
+      <a
+        href="https://linkedin.com/in/sammusso"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
         <FontAwesomeIcon icon={faLinkedin} />
       </a>
-      <a href="https://stackoverflow.com/users/4312368/sam-musso" target="_blank" rel="noopener noreferrer" className="icon">
-        <FontAwesomeIcon icon={faStackOverflow} />
+      <a
+        href="https://x.com/SamMusso"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
+        <FontAwesomeIcon icon={faXmark} />
       </a>
-      <a href="https://www.quora.com/profile/Sam-Musso-1" target="_blank" rel="noopener noreferrer" className="icon">
+      <a
+        href="https://www.quora.com/profile/Sam-Musso-1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
         <FontAwesomeIcon icon={faQuora} />
       </a>
-      <a href="https://twitter.com/SamMusso" target="_blank" rel="noopener noreferrer" className="icon">
-        <FontAwesomeIcon icon={faTimes} />
+      <a
+        href="https://stackoverflow.com/users/4312368/sam-musso"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
+        <FontAwesomeIcon icon={faStackOverflow} />
       </a>
+
     </div>
   </header>
 );
