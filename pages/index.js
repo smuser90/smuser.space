@@ -22,6 +22,7 @@ export default function Home() {
       <Header />
 
       <main>
+        <div className="main-content">
         <div className="description">
 
           <pre><code className="language-json">{descriptionStr}</code></pre>
@@ -53,6 +54,7 @@ export default function Home() {
           </div>
         </div>
 
+        </div>
       </main>
 
 
