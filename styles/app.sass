@@ -124,10 +124,14 @@ main
 @media (min-width: 800px) // non-mobile specific styles
   .grid
     min-width: 600px
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
 
   .card
     margin-left: 0.5rem
-    min-width: 25vw
+    flex: 0 0 calc(33.33% - 1rem)
+    max-width: calc(33.33% - 1rem)
 
   .description
     margin-top: 25vh
