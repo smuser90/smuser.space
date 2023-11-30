@@ -8,6 +8,12 @@ const Header = () => (
     <Head>
       <title>Sam Musso</title>
       <link rel="icon" href="/favicon.ico" />
+      <script
+        defer
+        data-domain="smuser.space"
+        src="https://plausible.io/js/script.js"
+      ></script>
+
     </Head>
     <div className="header-container">
       <div className="header-image">
