@@ -43,10 +43,10 @@ const ParticlesComponent = () => {
                 },
                 particles: {
                     color: {
-                        value: "#75A5B7",
+                        value: "#ffffff",
                     },
                     links: {
-                        color: "#75A5B7",
+                        color: "#ffffff",
                         distance: 150,
                         enable: true,
                         opacity: 0.5,
@@ -68,7 +68,7 @@ const ParticlesComponent = () => {
                             enable: true,
                             value_area: 800,
                         },
-                        value: 80,
+                        value: 100,
                     },
                     opacity: {
                         value: 0.5,
@@ -78,7 +78,7 @@ const ParticlesComponent = () => {
                     },
                     size: {
                         random: true,
-                        value: 5,
+                        value: 10,
                     },
                 },
                 detectRetina: true,
