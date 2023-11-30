@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin, faStackOverflow, faQuora } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin, faStackOverflow, faQuora, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -54,6 +54,14 @@ const Header = () => (
         className="icon"
       >
         <FontAwesomeIcon icon={faXmark} />
+      </a>
+      <a
+        href="https://www.instagram.com/sam__musso/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="icon"
+      >
+        <FontAwesomeIcon icon={faInstagram} />
       </a>
       <a
         href="https://www.quora.com/profile/Sam-Musso-1"
