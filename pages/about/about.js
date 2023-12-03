@@ -1,11 +1,10 @@
-import Head from 'next/head'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
 
 export default function About() {
   return (
     <div className="container">
-      <Head>
-        <title>About Me - Bytes, Bots, and Backyards</title>
-      </Head>
+      <Header />
 
       <main>
         <h1 className="title">
@@ -16,6 +15,8 @@ export default function About() {
           Get to know more about my background and interests.
         </p>
       </main>
+
+      <Footer/>
     </div>
   )
 }

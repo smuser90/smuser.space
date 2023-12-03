@@ -32,6 +32,7 @@ const Header = () => (
 
     <div className="social-icons">
       <a
+        id="github-link"
         href="https://github.com/smuser90"
         target="_blank"
         rel="noopener noreferrer"
@@ -40,6 +41,7 @@ const Header = () => (
         <FontAwesomeIcon icon={faGithub} />
       </a>
       <a
+        id="linkedin-link"
         href="https://linkedin.com/in/sammusso"
         target="_blank"
         rel="noopener noreferrer"
@@ -48,6 +50,7 @@ const Header = () => (
         <FontAwesomeIcon icon={faLinkedin} />
       </a>
       <a
+        id="x-link"
         href="https://x.com/SamMusso"
         target="_blank"
         rel="noopener noreferrer"
@@ -56,6 +59,7 @@ const Header = () => (
         <FontAwesomeIcon icon={faXmark} />
       </a>
       <a
+        id="instagram-link"
         href="https://www.instagram.com/sam__musso/"
         target="_blank"
         rel="noopener noreferrer"
@@ -64,6 +68,7 @@ const Header = () => (
         <FontAwesomeIcon icon={faInstagram} />
       </a>
       <a
+        id="quora-link"
         href="https://www.quora.com/profile/Sam-Musso-1"
         target="_blank"
         rel="noopener noreferrer"
@@ -72,6 +77,7 @@ const Header = () => (
         <FontAwesomeIcon icon={faQuora} />
       </a>
       <a
+        id="stackoverflow-link"
         href="https://stackoverflow.com/users/4312368/sam-musso"
         target="_blank"
         rel="noopener noreferrer"

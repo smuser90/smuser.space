@@ -1,14 +1,21 @@
 import React from 'react';
 import Particles from 'react-tsparticles';
-
+import { useCallback } from 'react';
+import { loadFull} from "tsparticles"
 const ParticlesComponent = () => {
+    const particlesInit = useCallback(async (engine) => {
+        console.log(engine)
+
+        await loadFull(engine);
+    }, []);
     return (
         <Particles
             id="tsparticles"
+            init={particlesInit}
             options={{
                 background: {
                     color: {
-                        value: "#75A5B7",
+                        value: "#111",
                     },
                 },
                 fpsLimit: 60,
@@ -43,10 +50,10 @@ const ParticlesComponent = () => {
                 },
                 particles: {
                     color: {
-                        value: "#ffffff",
+                        value: "#444",
                     },
                     links: {
-                        color: "#ffffff",
+                        color: "#333",
                         distance: 150,
                         enable: true,
                         opacity: 0.5,
@@ -59,8 +66,8 @@ const ParticlesComponent = () => {
                         direction: "none",
                         enable: true,
                         outMode: "bounce",
-                        random: false,
-                        speed: 6,
+                        random: true,
+                        speed: 4,
                         straight: false,
                     },
                     number: {
@@ -68,20 +75,20 @@ const ParticlesComponent = () => {
                             enable: true,
                             value_area: 800,
                         },
-                        value: 100,
+                        value: 40,
                     },
                     opacity: {
-                        value: 0.5,
+                        value: 0.7,
                     },
                     shape: {
                         type: "circle",
                     },
                     size: {
-                        random: true,
-                        value: 10,
+                        random: false,
+                        value: 3,
                     },
                 },
-                detectRetina: true,
+                detectRetina: false,
             }}
         />
     );

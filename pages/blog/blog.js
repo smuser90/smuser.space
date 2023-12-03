@@ -1,11 +1,11 @@
-import Head from 'next/head'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+
 
 export default function Blog() {
   return (
     <div className="container">
-      <Head>
-        <title>Blog - Bytes, Bots, and Backyards</title>
-      </Head>
+      <Header />
 
       <main>
         <h1 className="title">
@@ -16,6 +16,8 @@ export default function Blog() {
           Check back soon for my latest posts!
         </p>
       </main>
+
+      <Footer/>
     </div>
   )
 }

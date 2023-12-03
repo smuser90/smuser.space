@@ -41,15 +41,15 @@ async function exportNotionPagesToMarkdown(pageId) {
 
             // Convert Notion page to markdown
             const mdBlocks = await n2m.pageToMarkdown(block.id);
-            const markdown = n2m.toMarkdownString(mdBlocks);
+            const markdown = n2m.toMarkdownString(mdBlocks).parent;
 
             // Get the title of the child page for the file name
             const pageTitle = block.child_page.title;
             const fileName = pageTitle.replace(/\s+/g, '-').toLowerCase();
 
             // Write markdown to a file in the /blog directory
-            const filePath = path.join(__dirname, 'blog', `${fileName}.md`);
-            fs.writeFileSync(filePath, JSON.stringify(markdown));
+            const filePath = path.join(__dirname, '../blog', `${fileName}.md`);
+            fs.writeFileSync(filePath, markdown);
             console.log(`Exported "${pageTitle}" to ${filePath}`);
         }
     } catch (error) {
