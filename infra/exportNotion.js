@@ -49,7 +49,7 @@ async function exportNotionPagesToMarkdown(pageId) {
 
             // Write markdown to a file in the /blog directory
             const filePath = path.join(__dirname, 'blog', `${fileName}.md`);
-            fs.writeFileSync(filePath, markdown);
+            fs.writeFileSync(filePath, JSON.stringify(markdown));
             console.log(`Exported "${pageTitle}" to ${filePath}`);
         }
     } catch (error) {
