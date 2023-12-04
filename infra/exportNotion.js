@@ -11,18 +11,14 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 async function findBlogDatabaseId() {
     try {
-        // List all databases
+        // List all items
         const response = await notion.search({
         });
 
-        console.log(response)
-
-        // Find a database whose name contains "Blog"
+        // Find a page whose name contains "Blog"
         const blogDb = response.results.find((db) => { 
             return db.url && db.url.includes('Blog');
         });
-
-        console.log(blogDb);
 
         return blogDb ? blogDb.id : null;
     } catch (error) {
@@ -48,8 +44,10 @@ async function exportNotionPagesToMarkdown(pageId) {
             const fileName = pageTitle.replace(/\s+/g, '-').toLowerCase();
 
             // Write markdown to a file in the /blog directory
-            const filePath = path.join(__dirname, '../blog', `${fileName}.md`);
-            fs.writeFileSync(filePath, markdown);
+            const filePath = path.join(__dirname, '../pages/blog', `${fileName}.md`);
+            if (markdown && markdown.length) {
+                fs.writeFileSync(filePath, markdown);
+            }
             console.log(`Exported "${pageTitle}" to ${filePath}`);
         }
     } catch (error) {
