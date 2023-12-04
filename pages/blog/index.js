@@ -25,15 +25,17 @@ export default function BlogIndex({ posts }) {
     return (
         <div style={{marginTop: "10vh"}}>
             <Header />
-            <ul>
+            <div className="grid">
                 {posts.map(post => (
-                    (!(post.title.includes('slug') || post.title.includes('index'))) && (<li key={post.slug}>
-                        <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
-                            <a>{post.title}</a>
-                        </Link>
-                    </li>)
+                    (!(post.title.includes('slug') || post.title.includes('index'))) && (
+                        <div className="card" key={post.slug}>
+                            <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
+                                <a><h3>{post.title} &rarr;</h3></a>
+                            </Link>
+                        </div>
+                    )
                 ))}
-            </ul>
+            </div>
             <Footer />
         </div>
     );
