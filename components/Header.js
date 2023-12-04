@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin, faStackOverflow, faQuora, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -5,6 +6,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 const Header = () => {
+  const router = useRouter();
 
   return (
     <header className="header" style={{ position: 'absolute', top: 0, zIndex: 1000 }}>
@@ -25,6 +27,7 @@ const Header = () => {
             alt="Headshot"
             width={50}
             height={50}
+            onClick={() => router.push('/')}
           />
         </div>
         <h1 className="title">
