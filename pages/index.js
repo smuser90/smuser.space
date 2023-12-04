@@ -33,7 +33,7 @@ export default function Home() {
             <h3>Open Source &rarr;</h3>
           </div>
 
-          <div className="card" onClick={() => router.push('/blog/blog')}>
+          <div className="card" onClick={() => router.push('/blog')}>
             <h3>Thoughts &rarr;</h3>
           </div>
 
