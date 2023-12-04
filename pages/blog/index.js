@@ -3,6 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ParticlesComponent from '../../components/Particles'
 
 export async function getStaticProps() {
     const postsDirectory = path.join(process.cwd(), 'pages/blog');
@@ -23,19 +24,22 @@ export async function getStaticProps() {
 
 export default function BlogIndex({ posts }) {
     return (
-        <div style={{marginTop: "10vh"}}>
+        <div style={{ marginTop: "10vh" }}>
             <Header />
-            <div className="grid">
-                {posts.map(post => (
-                    (!(post.title.includes('slug') || post.title.includes('index'))) && (
-                        <div className="card" key={post.slug}>
-                            <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
-                                <a><h3>{post.title} &rarr;</h3></a>
-                            </Link>
-                        </div>
-                    )
-                ))}
-            </div>
+            <main>
+                <div className="grid">
+                    {posts.map(post => (
+                        (!(post.title.includes('slug') || post.title.includes('index'))) && (
+                            <div className="card" key={post.slug}>
+                                <Link href={`/blog/${post.slug}`} passHref legacyBehavior>
+                                    <a><h3>{post.title} &rarr;</h3></a>
+                                </Link>
+                            </div>
+                        )
+                    ))}
+                </div>
+            </main>
+            <ParticlesComponent />
             <Footer />
         </div>
     );

@@ -2,9 +2,7 @@ const { Client } = require('@notionhq/client');
 const { NotionToMarkdown } = require('notion-to-md');
 const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
-const { GSP_NO_RETURNED_VALUE } = require('next/dist/lib/constants');
-
+const { rimrafSync } = require('rimraf')
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -31,19 +29,32 @@ async function findBlogDatabaseId() {
 
 async function deleteMdFiles() {
     try {
-        const pages = path.join(__dirname, '../pages/**/*.md')
-        const out = rimraf.sync(pages);
+        const pages = path.join(__dirname, '../pages/blog/*.md')
+        const out = rimrafSync(pages, { glob: true});
         console.log(`Deleted all .md files in ${pages} : ${out}`);
     } catch (error) {
         console.error('Error deleting .md files:', error);
     }
 }
 
+
+async function processImages(pageId, markdown) {
+    const pageContent = await notion.blocks.children.list({ block_id: pageId });
+    for (const block of pageContent.results) {
+        if (block.type === 'image') {
+            const imageUrl = block.image.file?.url || block.image.external?.url;
+            if (imageUrl) {
+                // Replace [embed]() with the actual image markdown
+                markdown = markdown.replace('[embed]()', `![Image](${imageUrl})`);
+            }
+        }
+    }
+    return markdown;
+}
+
 async function exportNotionPagesToMarkdown(pageId) {
     try {
         await deleteMdFiles();
-
-        return;
 
         // Retrieve the list of child pages from the top-level Notion page
         const response = await notion.blocks.children.list({ block_id: pageId });
@@ -53,8 +64,9 @@ async function exportNotionPagesToMarkdown(pageId) {
 
             // Convert Notion page to markdown
             const mdBlocks = await n2m.pageToMarkdown(block.id);
-            const markdown = n2m.toMarkdownString(mdBlocks).parent;
-
+            let markdown = n2m.toMarkdownString(mdBlocks).parent;
+            // Additional processing for images
+            markdown = await processImages(block.id, markdown);
             // Get the title of the child page for the file name
             const pageTitle = block.child_page.title;
             const fileName = pageTitle.replace(/\s+/g, '-').toLowerCase();
