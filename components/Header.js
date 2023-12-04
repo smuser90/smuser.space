@@ -28,6 +28,7 @@ const Header = () => {
             width={50}
             height={50}
             onClick={() => router.push('/')}
+            className="cursor-pointer"
           />
         </div>
         <h1 className="title">
