@@ -1,10 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "pm2 stop --silent MonitorNotion && pm2 delete --silent MonitorNotion && pm2  --name MonitorNotion start 'npm run monitor' && next dev",
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "monitor": "node infra/monitorNotion.js",
     "export:notion": "node infra/exportNotion.js"
   },
   "dependencies": {
@@ -19,11 +20,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tsparticles": "^2.12.2",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "rimraf": "^5.0.5",
     "sass": "^1.69.5",
     "tsparticles": "^2.12.0"
   },
   "devDependencies": {
     "@notionhq/client": "^2.2.13",
+    "crypto-js": "^4.2.0",
     "notion-to-md": "^3.1.1"
   }
 }

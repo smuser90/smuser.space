@@ -31,15 +31,10 @@ async function checkForChanges() {
     }
 }
 
-process.once('SIGINT', function (code) {
-    console.log('SIGINT received...');
-    server.close();
-  });
-
 async function main() {
     const interval = setInterval( () => {
         checkForChanges();
-    }, 5000);
+    }, 1000);
 
     process.once('SIGINT', function (code) {
         console.log('SIGINT received...');

@@ -3,6 +3,7 @@ const { NotionToMarkdown } = require('notion-to-md');
 const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
+const { GSP_NO_RETURNED_VALUE } = require('next/dist/lib/constants');
 
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
@@ -30,8 +31,9 @@ async function findBlogDatabaseId() {
 
 async function deleteMdFiles() {
     try {
-        rimraf.sync(path.join(__dirname, '../pages/blog/*.md'));
-        console.log('Deleted all .md files in /pages/blog');
+        const pages = path.join(__dirname, '../pages/**/*.md')
+        const out = rimraf.sync(pages);
+        console.log(`Deleted all .md files in ${pages} : ${out}`);
     } catch (error) {
         console.error('Error deleting .md files:', error);
     }
@@ -40,6 +42,8 @@ async function deleteMdFiles() {
 async function exportNotionPagesToMarkdown(pageId) {
     try {
         await deleteMdFiles();
+
+        return;
 
         // Retrieve the list of child pages from the top-level Notion page
         const response = await notion.blocks.children.list({ block_id: pageId });
