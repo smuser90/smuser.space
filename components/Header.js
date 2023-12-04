@@ -5,12 +5,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 const Header = () => {
-  const interval = setTimeout(() => {
-    if (location.host.includes('localhost')) {
-      location.reload()
-    }
-    }, 1000); 
-
 
   return (
     <header className="header" style={{ position: 'absolute', top: 0, zIndex: 1000 }}>
