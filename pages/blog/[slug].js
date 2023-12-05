@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
+import Image from 'next/image'
 import mdxPrism from 'mdx-prism';
 import rehypeRaw from 'rehype-raw';
 import Header from '../../components/Header';
