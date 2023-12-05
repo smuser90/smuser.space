@@ -1,19 +1,10 @@
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = {
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/
+});
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   output: 'export',
   images: {
     unoptimized: true
   },
- 
-  // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
-  // trailingSlash: true,
- 
-  // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
-  // skipTrailingSlashRedirect: true,
- 
-  // Optional: Change the output directory `out` -> `dist`
-}
- 
-module.exports = nextConfig
+});
