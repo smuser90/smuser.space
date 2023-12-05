@@ -66,10 +66,9 @@ async function processImages(pageId, markdown) {
                 await downloadImage(imageUrl, imagePath);
                 const absoluteUrl = `/images/${path.basename(imagePath)}`;
                 // Replace the image URL in the markdown with the local path
-                if (markdown.includes(imageUrl)) {
-                    console.log(`replacing ${imageUrl} with ${absoluteUrl}`)  
-                    markdown = markdown.replace(imageUrl, absoluteUrl);
-                }
+                const imageName = path.basename(imagePath);
+                const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, 'g');
+                markdown = markdown.replace(regex, `![${imageName}](${absoluteUrl})`);
             }
         }
     }
