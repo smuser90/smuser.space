@@ -60,7 +60,7 @@ export default function BlogPost({ contentHtml }) {
                     marginRight: "10vw"
                 }} 
             >
-                <MDXRemote {...mdxSource} />
+                <MDXRemote {...mdxSource} components={{ Image }} />
             </article>
             <Footer />
         </div>
