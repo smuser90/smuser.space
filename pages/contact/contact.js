@@ -1,9 +1,6 @@
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 
 export default function Contact() {
     <div className="container">
-      <Header />
 
       <main>
         <h1 className="title">
@@ -15,6 +12,5 @@ export default function Contact() {
         </p>
       </main>
 
-      <Footer/>
     </div>
 }

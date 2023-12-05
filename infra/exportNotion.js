@@ -100,7 +100,11 @@ async function exportNotionPagesToMarkdown(pageId) {
             // Write markdown to a file in the /blog directory
             const filePath = path.join(__dirname, '../pages/blog', `${fileName}.mdx`);
             if (enrichedMarkdown && enrichedMarkdown.length) {
-                const contentWithImport = `import Image from 'next/image'\n\n${enrichedMarkdown}`;
+                const importImage = `import Image from 'next/image'\n`
+                const imports = `${importImage}\n`
+                const components = ``
+                const contentWithImport = `${imports}${enrichedMarkdown}\n${components}`;
+
                 fs.writeFileSync(filePath, contentWithImport);
             }
             console.log(`Exported "${pageTitle}" to ${filePath}`);

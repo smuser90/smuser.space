@@ -4,8 +4,6 @@ import Prism from 'prismjs'
 import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 // Import additional languages if needed
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import ParticlesComponent from '../components/Particles'
 
 import { useEffect } from 'react'
@@ -19,7 +17,6 @@ export default function Home() {
   const descriptionStr = `{\n\t"topics": ${JSON.stringify(bytesBotsBackyardBites)}    \n}`
   return (
     <div className="container">
-      <Header />
 
       <main>
         <div className="main-content">
@@ -59,7 +56,6 @@ export default function Home() {
 
 
 <ParticlesComponent />
-<Footer />
 <Script src="https://plausible.io/js/script.js" strategy="lazyOnload" />
 
     </div>

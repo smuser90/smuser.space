@@ -42,13 +42,24 @@ export async function getStaticProps({ params }) {
 }
 
 export default function BlogPost({ mdxSource }) {
+    const parentRef = useRef(null);
+    const mdxRef = useRef(null);
+
     useEffect(() => {
         Prism.highlightAll();
+
+        const headerElement = document.querySelector('.header');
+        if (headerElement) {
+            const parentElement = headerElement.parentElement;
+            if (parentElement) {
+                parentElement.classList.add('blog');
+            }
+        }
     }, []);
+
     return (
-      <div id="mdx-body">
-        <MDXRemote {...mdxSource} components={{ Image }}/>
+      <div id="mdx-body" ref={parentRef}>
+        <MDXRemote ref={mdxRef} {...mdxSource} components={{ Image }}/>
       </div>
     );
-
 }

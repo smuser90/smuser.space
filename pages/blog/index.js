@@ -1,8 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import ParticlesComponent from '../../components/Particles'
 
 export async function getStaticProps() {
@@ -11,7 +9,7 @@ export async function getStaticProps() {
 
     const posts = filenames.map(filename => {
         // Assuming the filename is the title, modify as needed
-        const title = filename.replace(/\.md$/, '');
+        const title = filename.replace(/\.mdx$/, '');
 
         return {
             slug: title,
@@ -25,7 +23,6 @@ export async function getStaticProps() {
 export default function BlogIndex({ posts }) {
     return (
         <div style={{ marginTop: "10vh" }}>
-            <Header />
             <main>
                 <div className="grid">
                     {posts.map(post => (
@@ -40,7 +37,6 @@ export default function BlogIndex({ posts }) {
                 </div>
             </main>
             <ParticlesComponent />
-            <Footer />
         </div>
     );
 }
