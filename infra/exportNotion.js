@@ -16,7 +16,7 @@ async function findBlogDatabaseId() {
         });
 
         // Find a page whose name contains "Blog"
-        const blogDb = response.results.find((db) => { 
+        const blogDb = response.results.find((db) => {
             return db.url && db.url.includes('Blog');
         });
 
@@ -30,7 +30,7 @@ async function findBlogDatabaseId() {
 async function deleteMdFiles() {
     try {
         const pages = path.join(__dirname, '../pages/blog/*.md')
-        const out = rimrafSync(pages, { glob: true});
+        const out = rimrafSync(pages, { glob: true });
         console.log(`Deleted all .md files in ${pages} : ${out}`);
     } catch (error) {
         console.error('Error deleting .md files:', error);
