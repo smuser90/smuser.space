@@ -31,7 +31,7 @@ async function findBlogDatabaseId() {
 
 async function deleteMdFiles() {
     try {
-        const pages = path.join(__dirname, '../pages/blog/*.md')
+        const pages = path.join(__dirname, '../pages/blog/*.md*')
         const out = rimrafSync(pages, { glob: true });
         console.log(`Deleted all .md files in ${pages} : ${out}`);
     } catch (error) {
@@ -96,7 +96,7 @@ async function exportNotionPagesToMarkdown(pageId) {
             const fileName = pageTitle.replace(/\s+/g, '-').toLowerCase();
 
             // Write markdown to a file in the /blog directory
-            const filePath = path.join(__dirname, '../pages/blog', `${fileName}.md`);
+            const filePath = path.join(__dirname, '../pages/blog', `${fileName}.mdx`);
             if (enrichedMarkdown && enrichedMarkdown.length) {
                 fs.writeFileSync(filePath, enrichedMarkdown);
             }
