@@ -66,11 +66,12 @@ async function processImages(pageId, markdown) {
                 console.log(imageUrl);
                 await downloadImage(imageUrl, imagePath);
                 const metadata = await sharp(imagePath).metadata();
+                const aspectRatio = metadata.width / metadata.height;
                 const absoluteUrl = `/images/${path.basename(imagePath)}`;
                 // Replace the image URL in the markdown with the local path
                 const imageName = path.basename(imagePath);
                 const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, 'g');
-                markdown = markdown.replace(regex, `<Image src="${absoluteUrl}" alt="${imageName}" width={${metadata.width}} height={${metadata.height}} />`);
+                markdown = markdown.replace(regex, `<Image src="${absoluteUrl}" alt="${imageName}" width={"100vw"} height={"${100 / aspectRatio}vw"} />`);
             }
         }
     }
