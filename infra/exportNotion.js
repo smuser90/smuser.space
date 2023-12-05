@@ -63,8 +63,8 @@ async function processImages(pageId, markdown) {
             if (imageUrl) {
                 const imagePath = path.join(__dirname, '../public/images', path.basename(url.parse(imageUrl).pathname));
                 await downloadImage(imageUrl, imagePath);
-                // Replace [embed]() with the actual image markdown
-                markdown = markdown.replace('[embed]()', `![Image](/images/${path.basename(imagePath)})`);
+                // Replace the image URL in the markdown with the local path
+                markdown = markdown.replace(imageUrl, `/images/${path.basename(imagePath)}`);
             }
         }
     }
