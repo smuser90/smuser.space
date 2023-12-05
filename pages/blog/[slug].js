@@ -3,8 +3,10 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import fs from 'fs';
 import path from 'path';
-import { remark } from 'remark';
-import html from 'remark-html';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
+import mdxPrism from 'mdx-prism';
+import rehypeRaw from 'rehype-raw';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Prism from 'prismjs'
@@ -30,10 +32,15 @@ export async function getStaticProps({ params }) {
     const fileContents = fs.readFileSync(filePath, 'utf8');
 
     // Use remark or a similar library to convert Markdown to HTML
-    const processedContent = await remark().use(html).process(fileContents);
-    const contentHtml = processedContent.toString();
+    const mdxSource = await serialize(fileContents, {
+        mdxOptions: {
+            remarkPlugins: [],
+            rehypePlugins: [mdxPrism, rehypeRaw],
+        },
+        scope: {},
+    });
 
-    return { props: { contentHtml } };
+    return { props: { mdxSource } };
 }
 
 export default function BlogPost({ contentHtml }) {
@@ -51,10 +58,9 @@ export default function BlogPost({ contentHtml }) {
                     marginLeft: "10vw",
                     marginRight: "10vw"
                 }} 
-                dangerouslySetInnerHTML={{ 
-                    __html: contentHtml 
-                }} 
-            />
+            >
+                <MDXRemote {...mdxSource} />
+            </article>
             <Footer />
         </div>
     );
