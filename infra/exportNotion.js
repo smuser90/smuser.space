@@ -68,7 +68,7 @@ async function processImages(pageId, markdown) {
                 // Replace the image URL in the markdown with the local path
                 const imageName = path.basename(imagePath);
                 const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, 'g');
-                markdown = markdown.replace(regex, `![${imageName}](${absoluteUrl})`);
+                markdown = markdown.replace(regex, `<Image src="${absoluteUrl}" alt="${imageName}" />`);
             }
         }
     }
