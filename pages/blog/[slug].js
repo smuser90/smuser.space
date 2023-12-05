@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import fs from 'fs';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
