@@ -2,7 +2,9 @@ const { Client } = require('@notionhq/client');
 const { NotionToMarkdown } = require('notion-to-md');
 const fs = require('fs');
 const path = require('path');
-const { rimrafSync } = require('rimraf')
+const { rimrafSync } = require('rimraf');
+const https = require('https');
+const url = require('url');
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -38,14 +40,31 @@ async function deleteMdFiles() {
 }
 
 
+async function downloadImage(imageUrl, imagePath) {
+    return new Promise((resolve, reject) => {
+        const file = fs.createWriteStream(imagePath);
+        https.get(imageUrl, (response) => {
+            response.pipe(file);
+            file.on('finish', () => {
+                file.close(resolve);
+            });
+        }).on('error', (error) => {
+            fs.unlink(imagePath);
+            reject(error);
+        });
+    });
+}
+
 async function processImages(pageId, markdown) {
     const pageContent = await notion.blocks.children.list({ block_id: pageId });
     for (const block of pageContent.results) {
         if (block.type === 'image') {
             const imageUrl = block.image.file?.url || block.image.external?.url;
             if (imageUrl) {
+                const imagePath = path.join(__dirname, '../public/images', path.basename(url.parse(imageUrl).pathname));
+                await downloadImage(imageUrl, imagePath);
                 // Replace [embed]() with the actual image markdown
-                markdown = markdown.replace('[embed]()', `![Image](${imageUrl})`);
+                markdown = markdown.replace('[embed]()', `![Image](/images/${path.basename(imagePath)})`);
             }
         }
     }
