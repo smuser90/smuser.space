@@ -45,6 +45,10 @@ export default function BlogPost({ mdxSource }) {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
-    return <MDXRemote {...mdxSource} components={{ Image }}/>
+    return (
+      <div id="mdx-body">
+        <MDXRemote {...mdxSource} components={{ Image }}/>
+      </div>
+    );
 
 }
