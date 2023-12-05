@@ -5,6 +5,7 @@ const path = require('path');
 const { rimrafSync } = require('rimraf');
 const https = require('https');
 const url = require('url');
+const sharp = require('sharp');
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -64,11 +65,12 @@ async function processImages(pageId, markdown) {
                 const imagePath = path.join(__dirname, '../public/images', path.basename(url.parse(imageUrl).pathname));
                 console.log(imageUrl);
                 await downloadImage(imageUrl, imagePath);
+                const metadata = await sharp(imagePath).metadata();
                 const absoluteUrl = `/images/${path.basename(imagePath)}`;
                 // Replace the image URL in the markdown with the local path
                 const imageName = path.basename(imagePath);
                 const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, 'g');
-                markdown = markdown.replace(regex, `<Image src="${absoluteUrl}" alt="${imageName}" width={500} />`);
+                markdown = markdown.replace(regex, `<Image src="${absoluteUrl}" alt="${imageName}" width={${metadata.width}} height={${metadata.height}} />`);
             }
         }
     }
