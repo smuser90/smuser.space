@@ -62,9 +62,14 @@ async function processImages(pageId, markdown) {
             const imageUrl = block.image.file?.url || block.image.external?.url;
             if (imageUrl) {
                 const imagePath = path.join(__dirname, '../public/images', path.basename(url.parse(imageUrl).pathname));
+                console.log(imageUrl);
                 await downloadImage(imageUrl, imagePath);
+                const absoluteUrl = `/images/${path.basename(imagePath)}`;
                 // Replace the image URL in the markdown with the local path
-                markdown = markdown.replace(imageUrl, `/images/${path.basename(imagePath)}`);
+                if (markdown.includes(imageUrl)) {
+                    console.log(`replacing ${imageUrl} with ${absoluteUrl}`)  
+                    markdown = markdown.replace(imageUrl, absoluteUrl);
+                }
             }
         }
     }
@@ -83,17 +88,18 @@ async function exportNotionPagesToMarkdown(pageId) {
 
             // Convert Notion page to markdown
             const mdBlocks = await n2m.pageToMarkdown(block.id);
-            let markdown = n2m.toMarkdownString(mdBlocks).parent;
+            const markdown = n2m.toMarkdownString(mdBlocks).parent;
             // Additional processing for images
-            markdown = await processImages(block.id, markdown);
+            const enrichedMarkdown = await processImages(block.id, markdown);
+
             // Get the title of the child page for the file name
             const pageTitle = block.child_page.title;
             const fileName = pageTitle.replace(/\s+/g, '-').toLowerCase();
 
             // Write markdown to a file in the /blog directory
             const filePath = path.join(__dirname, '../pages/blog', `${fileName}.md`);
-            if (markdown && markdown.length) {
-                fs.writeFileSync(filePath, markdown);
+            if (enrichedMarkdown && enrichedMarkdown.length) {
+                fs.writeFileSync(filePath, enrichedMarkdown);
             }
             console.log(`Exported "${pageTitle}" to ${filePath}`);
         }
