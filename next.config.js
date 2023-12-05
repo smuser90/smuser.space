@@ -7,4 +7,9 @@ module.exports = withMDX({
   images: {
     unoptimized: true
   },
+  experimental: {
+    images: {
+      allowFutureImage: true
+    }
+  },
 });
