@@ -45,8 +45,10 @@ export default function BlogPost({ mdxSource }) {
     const parentRef = useRef(null);
     const mdxRef = useRef(null);
 
+    
+    //Prism.highlightAll();
+
     useEffect(() => {
-        Prism.highlightAll();
 
         const headerElement = document.querySelector('.header');
         if (headerElement) {
