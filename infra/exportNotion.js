@@ -6,6 +6,7 @@ const { rimrafSync } = require("rimraf");
 const https = require("https");
 const url = require("url");
 const sharp = require("sharp");
+const { v4: uuidv4 } = require('uuid');
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -45,20 +46,23 @@ async function processImages(pageId, markdown) {
     if (block.type === "image") {
       const imageUrl = block.image.file?.url || block.image.external?.url;
       if (imageUrl) {
+        const imageName = path.basename(url.parse(imageUrl).pathname);
+        const imageExtension = path.extname(imageName);
+        const uuid = uuidv4();
+        const newImageName = `${uuid}${imageExtension}`;
         const imagePath = path.join(
           __dirname,
           "../public/images",
-          path.basename(url.parse(imageUrl).pathname)
+          newImageName
         );
         await downloadImage(imageUrl, imagePath);
         const metadata = await sharp(imagePath).metadata();
-        const absoluteUrl = `/images/${path.basename(imagePath)}`;
+        const absoluteUrl = `/images/${newImageName}`;
         // Replace the image URL in the markdown with the local path
-        const imageName = path.basename(imagePath);
         const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, "g");
         markdown = markdown.replace(
           regex,
-          `<Image src="${absoluteUrl}" alt="${imageName}" width="0" height="0" sizes="100vw" className="w-full h-auto" />`
+          `<Image src="${absoluteUrl}" alt="${newImageName}" width="0" height="0" sizes="100vw" className="w-full h-auto" />`
         );
       }
     }
