@@ -12,23 +12,6 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 // Initialize notion-to-md
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-async function findBlogDatabaseId() {
-  try {
-    // List all items
-    const response = await notion.search({});
-
-    // Find a page whose name contains "Blog"
-    const blogDb = response.results.find((db) => {
-      return db.url && db.url.includes("Blog");
-    });
-
-    return blogDb ? blogDb.id : null;
-  } catch (error) {
-    console.error("Error finding Blog database:", error);
-    return null;
-  }
-}
-
 async function deleteMdFiles() {
   try {
     const pages = path.join(__dirname, "../pages/blog/*.md*");
@@ -84,50 +67,53 @@ async function processImages(pageId, markdown) {
 }
 
 async function exportNotionPagesToMarkdown(pageId) {
-  try {
-    await deleteMdFiles();
+  const response = await notion.pages.retrieve({page_id: pageId})
+  const title = response.properties.Name.title.pop().plain_text;
+  console.log("Processing: ", title);
+  // Convert Notion page to markdown
+  const mdBlocks = await n2m.pageToMarkdown(pageId);
+  const markdown = n2m.toMarkdownString(mdBlocks).parent;
+  // Additional processing for images
+  const enrichedMarkdown = await processImages(pageId, markdown);
 
-    // Retrieve the list of child pages from the top-level Notion page
-    const response = await notion.blocks.children.list({ block_id: pageId });
+  // Write markdown to a file in the /blog directory
+  const filePath = path.join(__dirname, "../pages/blog", `${title}.mdx`);
+  if (enrichedMarkdown && enrichedMarkdown.length) {
+    const importImage = `import Image from 'next/image'`;
+    const imports = `${importImage}\n`;
+    const preComponents = `<div className="blog">`;
+    const postComponents = `</div>`;
+    const contentWithImport = `${imports}\n${preComponents}${enrichedMarkdown}\n${postComponents}`;
 
-    for (const block of response.results) {
-      if (block.type !== "child_page") continue;
+    fs.writeFileSync(filePath, contentWithImport);
+  }
+  console.log(`Exported "${title}" to ${filePath}`);
+}
 
-      // Convert Notion page to markdown
-      const mdBlocks = await n2m.pageToMarkdown(block.id);
-      const markdown = n2m.toMarkdownString(mdBlocks).parent;
-      // Additional processing for images
-      const enrichedMarkdown = await processImages(block.id, markdown);
+async function getPublishedPosts() {
+  const response = await notion.search({});
 
-      // Get the title of the child page for the file name
-      const pageTitle = block.child_page.title;
-      const fileName = pageTitle.replace(/\s+/g, "-").toLowerCase();
-
-      // Write markdown to a file in the /blog directory
-      const filePath = path.join(__dirname, "../pages/blog", `${fileName}.mdx`);
-      if (enrichedMarkdown && enrichedMarkdown.length) {
-        const importImage = `import Image from 'next/image'`;
-        const imports = `${importImage}\n`;
-        const preComponents = `<div className="blog">`;
-        const postComponents = `</div>`;
-        const contentWithImport = `${imports}\n${preComponents}${enrichedMarkdown}\n${postComponents}`;
-
-        fs.writeFileSync(filePath, contentWithImport);
+  for (const result of response.results) {
+    if (
+      result.object === 'page' && 
+      result.properties &&
+      result.properties.Tags &&
+      result.properties.Tags.multi_select &&
+      result.properties.Tags.multi_select.options === undefined
+    ) {
+      for (const tag of result.properties.Tags.multi_select) {
+        if (tag.name == "Published") {
+          console.log("Publishing: ", result.properties.Name.title.pop().plain_text);
+          await exportNotionPagesToMarkdown(result.id);
+        }
       }
-      console.log(`Exported "${pageTitle}" to ${filePath}`);
     }
-  } catch (error) {
-    console.error("Error exporting child pages from Notion:", error);
   }
 }
 
 async function main() {
-  const blogPageId = await findBlogDatabaseId();
-  if (blogPageId) {
-    await exportNotionPagesToMarkdown(blogPageId);
-  } else {
-    console.log("No Blog pages found.");
-  }
+  await deleteMdFiles();
+  await getPublishedPosts();
 }
 
 main();
