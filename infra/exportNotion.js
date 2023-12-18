@@ -48,7 +48,8 @@ async function processImages(pageId, markdown) {
       if (imageUrl) {
         const imageName = path.basename(url.parse(imageUrl).pathname);
         const imageExtension = path.extname(imageName);
-        const tempPath = path.join(__dirname, "../public/images/temp");
+        const rand = Math.random()*1000
+        const tempPath = path.join(__dirname, `../public/images/temp-${rand}`);
         await downloadImage(imageUrl, tempPath);
         const fileContent = fs.readFileSync(tempPath);
         const hash = crypto.createHash('md5').update(fileContent).digest('hex').substring(0,8);
