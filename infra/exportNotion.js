@@ -102,7 +102,7 @@ async function exportNotionPagesToMarkdown(pageId) {
 async function getPublishedPosts() {
   const response = await notion.search({});
 
-  for (const result of response.results) {
+  const promises = response.results.map(result => {
     if (
       result.object === 'page' && 
       result.properties &&
@@ -113,11 +113,13 @@ async function getPublishedPosts() {
       for (const tag of result.properties.Tags.multi_select) {
         if (tag.name == "Published") {
           console.log("Publishing: ", result.properties.Name.title.pop().plain_text);
-          await exportNotionPagesToMarkdown(result.id);
+          return exportNotionPagesToMarkdown(result.id);
         }
       }
     }
-  }
+  });
+
+  await Promise.all(promises);
 }
 
 async function main() {
