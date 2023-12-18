@@ -49,11 +49,9 @@ async function processImages(pageId, markdown) {
         const imageName = path.basename(url.parse(imageUrl).pathname);
         const imageExtension = path.extname(imageName);
         const tempPath = path.join(__dirname, "../public/images/temp");
-        const imageName = path.basename(url.parse(imageUrl).pathname);
-        const imageExtension = path.extname(imageName);
         await downloadImage(imageUrl, tempPath);
         const fileContent = fs.readFileSync(tempPath);
-        const hash = crypto.createHash('md5').update(fileContent).digest('hex');
+        const hash = crypto.createHash('md5').update(fileContent).digest('hex').substring(0,8);
         const newImageName = `${hash}${imageExtension}`;
         const imagePath = path.join(
           __dirname,
