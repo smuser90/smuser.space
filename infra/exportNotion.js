@@ -48,16 +48,19 @@ async function processImages(pageId, markdown) {
       if (imageUrl) {
         const imageName = path.basename(url.parse(imageUrl).pathname);
         const imageExtension = path.extname(imageName);
+        const tempPath = path.join(__dirname, "../public/images/temp");
         const imageName = path.basename(url.parse(imageUrl).pathname);
         const imageExtension = path.extname(imageName);
-        const newImageName = `${crypto.createHash('md5').update(imageName).digest('hex')}${imageExtension}`;
+        await downloadImage(imageUrl, tempPath);
+        const fileContent = fs.readFileSync(tempPath);
+        const hash = crypto.createHash('md5').update(fileContent).digest('hex');
+        const newImageName = `${hash}${imageExtension}`;
         const imagePath = path.join(
           __dirname,
           "../public/images",
           newImageName
         );
-        const fileContent = fs.readFileSync(imagePath);
-        await downloadImage(imageUrl, imagePath);
+        fs.renameSync(tempPath, imagePath);
         const metadata = await sharp(imagePath).metadata();
         const absoluteUrl = `/images/${newImageName}`;
         // Replace the image URL in the markdown with the local path
