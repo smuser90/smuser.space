@@ -42,7 +42,7 @@ async function downloadImage(imageUrl, imagePath) {
 
 async function processImages(pageId, markdown) {
   const pageContent = await notion.blocks.children.list({ block_id: pageId });
-  for (const block of pageContent.results) {
+  const promises = pageContent.results.map(async (block) => {
     if (block.type === "image") {
       const imageUrl = block.image.file?.url || block.image.external?.url;
       if (imageUrl) {
@@ -69,7 +69,8 @@ async function processImages(pageId, markdown) {
         );
       }
     }
-  }
+  });
+  await Promise.all(promises);
   return markdown;
 }
 
