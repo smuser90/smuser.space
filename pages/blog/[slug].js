@@ -26,6 +26,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const postsDirectory = path.join(process.cwd(), 'pages/blog');
+    console.log(params);
     const filePath = path.join(postsDirectory, `${params.slug}.mdx`);
     const fileContents = fs.readFileSync(filePath, 'utf8');
 
@@ -44,9 +45,6 @@ export async function getStaticProps({ params }) {
 export default function BlogPost({ mdxSource }) {
     const parentRef = useRef(null);
     const mdxRef = useRef(null);
-
-    
-    //Prism.highlightAll();
 
     useEffect(() => {
 
