@@ -5,6 +5,8 @@ export default function About() {
   const [context, setContext] = useState(null);
 
 
+  const [images, setImages] = useState([]);
+
   useEffect(() => {
     const loadImages = [
       new Promise((resolve) => {
@@ -19,11 +21,12 @@ export default function About() {
       }),
     ];
 
-    Promise.all(loadImages).then((images) => {
+    Promise.all(loadImages).then((loadedImages) => {
       const canvas = canvasRef.current;
-      canvas.width = images[0].naturalWidth;
-      canvas.height = images[0].naturalHeight;
+      canvas.width = loadedImages[0].naturalWidth;
+      canvas.height = loadedImages[0].naturalHeight;
       setContext(canvas.getContext("2d"));
+      setImages(loadedImages);
     });
 
     let activeImage = 0;
