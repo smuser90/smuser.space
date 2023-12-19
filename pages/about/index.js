@@ -2,10 +2,8 @@ import { useRef, useState, useEffect } from "react";
 
 export default function About() {
   const canvasRef = useRef(null);
-  const [context, setContext] = useState(null);
-
-
-  const [images, setImages] = useState([]);
+  const contextRef = useRef(null);
+  const imagesRef = useRef([]);
 
   useEffect(() => {
     const loadImages = [
@@ -25,8 +23,8 @@ export default function About() {
       const canvas = canvasRef.current;
       canvas.width = loadedImages[0].naturalWidth;
       canvas.height = loadedImages[0].naturalHeight;
-      setContext(canvas.getContext("2d"));
-      setImages(loadedImages);
+      contextRef.current = canvas.getContext("2d");
+      imagesRef.current = loadedImages;
     });
 
     let activeImage = 0;
@@ -34,25 +32,23 @@ export default function About() {
     let transitionDuration = 1.2; // transition duration in seconds
     let steadyStateDuration = 5; // steady state duration in second
     let transitionStartTime = null;
-   
+
     const draw = () => {
-      if (context) {
+      if (contextRef.current) {
         const canvas = canvasRef.current;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-   
+        contextRef.current.clearRect(0, 0, canvas.width, canvas.height);
+
         if (transitionStartTime === null) {
           transitionStartTime = Date.now();
         }
-   
-        let timeElapsed = (Date.now() - transitionStartTime) / 1000
-    // convert to seconds
-   
+
+        let timeElapsed = (Date.now() - transitionStartTime) / 1000;
+        // convert to seconds
+
         if (timeElapsed < transitionDuration) {
           // we are in transition phase
-          opacity = Math.pow(2, -10 * timeElapsed /
-    transitionDuration);
-        } else if (timeElapsed < transitionDuration +
-    steadyStateDuration) {
+          opacity = Math.pow(2, (-10 * timeElapsed) / transitionDuration);
+        } else if (timeElapsed < transitionDuration + steadyStateDuration) {
           // we are in steady state phase
           opacity = 1;
         } else {
@@ -60,14 +56,19 @@ export default function About() {
           transitionStartTime = Date.now();
           activeImage = 1 - activeImage;
         }
-   
-        context.globalAlpha = opacity;
-        context.drawImage(images[activeImage], 0, 0, canvas.width,
-    canvas.height);
-   
-        context.globalAlpha = 1 - opacity;
-        context.drawImage(
-          images[1 - activeImage],
+
+        contextRef.current.globalAlpha = opacity;
+        contextRef.current.drawImage(
+          imagesRef.current[activeImage],
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        contextRef.current.globalAlpha = 1 - opacity;
+        contextRef.current.drawImage(
+          imagesRef.current[1 - activeImage],
           0,
           0,
           canvas.width,
@@ -75,8 +76,6 @@ export default function About() {
         );
       }
     };
-   
-  
 
     const interval = setInterval(draw, 50);
 
