@@ -20,15 +20,40 @@ export default function About() {
 
     let activeImage = 0;
     let opacity = 1;
-
+    let transitionDuration = 1.2; // transition duration in seconds
+    let steadyStateDuration = 5; // steady state duration in second
+    let transitionStartTime = null;
+   
     const draw = () => {
       if (context) {
         const canvas = canvasRef.current;
         context.clearRect(0, 0, canvas.width, canvas.height);
-  
+   
+        if (transitionStartTime === null) {
+          transitionStartTime = Date.now();
+        }
+   
+        let timeElapsed = (Date.now() - transitionStartTime) / 1000
+    // convert to seconds
+   
+        if (timeElapsed < transitionDuration) {
+          // we are in transition phase
+          opacity = Math.pow(2, -10 * timeElapsed /
+    transitionDuration);
+        } else if (timeElapsed < transitionDuration +
+    steadyStateDuration) {
+          // we are in steady state phase
+          opacity = 1;
+        } else {
+          // transition to the next image
+          transitionStartTime = Date.now();
+          activeImage = 1 - activeImage;
+        }
+   
         context.globalAlpha = opacity;
-        context.drawImage(images[activeImage], 0, 0, canvas.width, canvas.height);
-  
+        context.drawImage(images[activeImage], 0, 0, canvas.width,
+    canvas.height);
+   
         context.globalAlpha = 1 - opacity;
         context.drawImage(
           images[1 - activeImage],
@@ -37,14 +62,28 @@ export default function About() {
           canvas.width,
           canvas.height
         );
-  
-        opacity -= 0.01;
-        if (opacity <= 0) {
-          opacity = 1;
-          activeImage = 1 - activeImage;
-        }
       }
     };
+   
+    useEffect(() => {
+      const images = [new Image(), new Image()];
+   
+      images[0].src = "/static/sam-musso.jpg";
+      images[1].src = "/static/sam-solar.png";
+   
+      images[0].onload = function () {
+        const canvas = canvasRef.current;
+        canvas.width = this.naturalWidth;
+        canvas.height = this.naturalHeight;
+        setContext(canvas.getContext("2d"));
+      };
+   
+      const interval = setInterval(draw, 50);
+   
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
   
 
     const interval = setInterval(draw, 50);
