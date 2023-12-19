@@ -38,12 +38,29 @@ html, body, .container
   margin: 3rem 0
   overflow-x: auto
 
+.main-content
+  margin-left: 23vw
+  margin-right: 23vw
+
 .card
   box-sizing: border-box
   padding-left: 1rem
   border-radius: 0.5rem
+  min-height: 20vh
+  max-height: 30vh
+  min-width: 30vw
+  display: flex
+  justify-content: center
+  align-items: center
+
+.card-small
+  box-sizing: border-box
+  padding-left: 1rem
+  margin: 1rem
+  border-radius: 0.5rem
   min-height: 10vh
   max-height: 20vh
+  min-width: 15vw
   display: flex
   justify-content: center
   align-items: center
@@ -70,8 +87,8 @@ html, body, .container
   box-sizing: border-box
 
 .blog
-  margin-left: 10vw
-  margin-right: 10vw
+  margin-left: 23vw
+  margin-right: 23vw
   margin-top: 10vh
   margin-bottom: 10vh
 
@@ -121,16 +138,28 @@ canvas
 @media (max-width: 800px) // mobile specific styles
   #quora-link, #stackoverflow-link
     display: none
+    
   .grid
     flex-direction: column
     align-items: center
     overflow-x: hidden
     min-width: 90vw
 
+  .blog
+    margin-left: 5vw
+    margin-right: 5vw
+
   .blog img
     width: 95vw
 
   .card
+    width: 100%
+    margin-bottom: 1rem
+    padding: 0.5rem
+    padding-left: 1.5rem
+    height: 10vh
+
+  .card-small
     width: 100%
     margin-bottom: 1rem
     padding: 0.5rem
@@ -175,6 +204,14 @@ canvas
   .icon
     font-size: 1.2rem
     height: 2rem
+
+  #img-bio
+    width: 30vw
+    height: auto
+    display: block
+    margin-left: auto
+    margin-right: auto
+    margin-top: 20px
 
 .header-container
   display: flex
