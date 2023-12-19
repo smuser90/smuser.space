@@ -6,17 +6,25 @@ export default function About() {
 
 
   useEffect(() => {
-    const images = [new Image(), new Image()];
+    const loadImages = [
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = "/static/sam-musso.jpg";
+      }),
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = "/static/sam-solar.png";
+      }),
+    ];
 
-    images[0].src = "/static/sam-musso.jpg";
-    images[1].src = "/static/sam-solar.png";
-
-    images[0].onload = function () {
+    Promise.all(loadImages).then((images) => {
       const canvas = canvasRef.current;
-      canvas.width = this.naturalWidth;
-      canvas.height = this.naturalHeight;
+      canvas.width = images[0].naturalWidth;
+      canvas.height = images[0].naturalHeight;
       setContext(canvas.getContext("2d"));
-    };
+    });
 
     let activeImage = 0;
     let opacity = 1;
