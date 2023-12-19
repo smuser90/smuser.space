@@ -1,8 +1,8 @@
 import os
 import boto3
-import logging
 import mimetypes
 from botocore.exceptions import NoCredentialsError
+from tqdm import tqdm
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,22 +22,27 @@ def upload_files_to_s3(bucket_name, directory):
         return
 
     try:
-        # Walk through the directory
-        for subdir, dirs, files in os.walk(directory):
-            for file in files:
-                full_path = os.path.join(subdir, file)
-                with open(full_path, 'rb') as data:
-                    try:
-                        # Guess the MIME type of the file
-                        content_type = mimetypes.guess_type(full_path)[0] or 'application/octet-stream'
-                        # Set the correct content type when uploading the file
-                        s3_client.upload_fileobj(data, bucket_name, full_path[len(directory):].lstrip(os.sep), ExtraArgs={'ContentType': content_type})
-                        logging.info(f"File {full_path} uploaded to {bucket_name} with content type {content_type}")
-                    except NoCredentialsError:
-                        logging.error("Credentials not available")
-                        return
-                    except Exception as e:
-                        logging.exception(f"Failed to upload {full_path}: {e}")
+        # Calculate total number of files
+        total_files = sum([len(files) for subdir, dirs, files in os.walk(directory)])
+
+        # Create a progress bar
+        with tqdm(total=total_files, ncols=70) as pbar:
+            # Walk through the directory
+            for subdir, dirs, files in os.walk(directory):
+                for file in files:
+                    full_path = os.path.join(subdir, file)
+                    with open(full_path, 'rb') as data:
+                        try:
+                            # Guess the MIME type of the file
+                            content_type = mimetypes.guess_type(full_path)[0] or 'application/octet-stream'
+                            # Set the correct content type when uploading the file
+                            s3_client.upload_fileobj(data, bucket_name, full_path[len(directory):].lstrip(os.sep), ExtraArgs={'ContentType': content_type})
+                            pbar.update(1)
+                        except NoCredentialsError:
+                            print("Credentials not available")
+                            return
+                        except Exception as e:
+                            print(f"Failed to upload {full_path}: {e}")
     except Exception as e:
         logging.exception(f"An error occurred while processing the directory {directory}: {e}")
 
