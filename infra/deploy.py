@@ -3,6 +3,7 @@ import boto3
 import mimetypes
 from botocore.exceptions import NoCredentialsError
 from tqdm import tqdm
+import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
