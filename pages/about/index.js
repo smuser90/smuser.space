@@ -47,7 +47,7 @@ export default function About() {
 
         if (timeElapsed < transitionDuration) {
           // we are in transition phase
-          opacity = Math.pow(2, (-10 * timeElapsed) / transitionDuration);
+          opacity = 1 - Math.pow(0.9, timeElapsed * 1000 / 25);
         } else if (timeElapsed < transitionDuration + steadyStateDuration) {
           // we are in steady state phase
           opacity = 1;
