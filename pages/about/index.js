@@ -31,7 +31,7 @@ export default function About() {
     let opacity = 1;
     let transitionDuration = 1.2; // transition duration in seconds
     let steadyStateDuration = 5; // steady state duration in second
-    let transitionStartTime = null;
+    let transitionStartTime = Date.now() + steadyStateDuration * 1000;
 
     const draw = () => {
       if (contextRef.current) {
