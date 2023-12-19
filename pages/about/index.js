@@ -55,6 +55,7 @@ export default function About() {
           // transition to the next image
           transitionStartTime = Date.now();
           activeImage = 1 - activeImage;
+          opacity = 0;
         }
 
         contextRef.current.globalAlpha = opacity;
