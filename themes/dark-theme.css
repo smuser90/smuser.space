@@ -24,12 +24,14 @@ a:active {
   color: var(--link-hover-color);
 }
 
-.card {
+.card,
+.card-small {
   background-color: var(--card-background-color);
   transition: background-color 0.3s ease;
 }
 
-.card:hover {
+.card:hover,
+.card-small:hover {
   background-color: #2a2a2a; /* Lightened background color for hover state */
 }
 

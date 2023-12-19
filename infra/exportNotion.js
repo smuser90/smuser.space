@@ -15,7 +15,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 async function deleteMdFiles() {
   try {
-    const pages = path.join(__dirname, "../pages/blog/*.md*");
+    const pages = path.join(__dirname, "../pages/blog/posts/*.md*");
     const out = rimrafSync(pages, { glob: true });
     console.log(`Deleted all .md files in ${pages} : ${out}`);
   } catch (error) {
