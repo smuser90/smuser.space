@@ -253,12 +253,16 @@ canvas
 .bio-section
   display: block
 
+.image-container
+  position: relative
+
 .bio-image
-  float: right
-  margin: 0 0 1em 1em
-  clear: both
+  position: absolute
+  top: 0
+  right: 0
   opacity: 0
   transition: opacity 1s
 
 .bio-image.active
   opacity: 1
+  z-index: 1
