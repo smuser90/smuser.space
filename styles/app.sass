@@ -251,10 +251,16 @@ canvas
 .cursor-pointer
   cursor: pointer
 .bio-section
-  display: block
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 100vh
 
 .image-container
   position: relative
+  float: right
+  margin-left: 1em
 
 .bio-image
   position: absolute
@@ -262,6 +268,8 @@ canvas
   right: 0
   opacity: 0
   transition: opacity 1s
+  max-width: 30vw
+  height: auto
 
 .bio-image.active
   opacity: 1
