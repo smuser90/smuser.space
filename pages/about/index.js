@@ -18,20 +18,47 @@ export default function About() {
       <main>
         <h1 className="title">About Sam Musso</h1>
         <div className="bio-section">
-          <div className="image-container">
-            <img
-              src="/static/sam-musso.jpg"
-              alt="Sam Musso"
-              className={activeImage === 0 ? "bio-image active" : "bio-image"}
-              style={{ transition: "opacity 1s" }}
-            />
-            <img
-              src="/static/sam-solar.png"
-              alt="Sam Musso Solar"
-              className={activeImage === 1 ? "bio-image active" : "bio-image"}
-              style={{ transition: "opacity 1s" }}
-            />
-          </div>
+          const canvasRef = useRef(null);
+
+          useEffect(() => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+
+            const images = [
+              new Image(),
+              new Image()
+            ];
+
+            images[0].src = "/static/sam-musso.jpg";
+            images[1].src = "/static/sam-solar.png";
+
+            let activeImage = 0;
+            let opacity = 1;
+
+            const draw = () => {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+
+              context.globalAlpha = opacity;
+              context.drawImage(images[activeImage], 0, 0, canvas.width, canvas.height);
+
+              context.globalAlpha = 1 - opacity;
+              context.drawImage(images[1 - activeImage], 0, 0, canvas.width, canvas.height);
+
+              opacity -= 0.01;
+              if (opacity <= 0) {
+                opacity = 1;
+                activeImage = 1 - activeImage;
+              }
+            };
+
+            const interval = setInterval(draw, 50);
+
+            return () => {
+              clearInterval(interval);
+            };
+          }, []);
+
+          <canvas ref={canvasRef} className="bio-image"></canvas>
 
           <p>
             I'm your host, Sam Musso. I'm a software engineer, polyglot, and
