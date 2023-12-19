@@ -6,7 +6,7 @@ const { rimrafSync } = require("rimraf");
 const https = require("https");
 const url = require("url");
 const sharp = require("sharp");
-const crypto = require('crypto');
+const crypto = require("crypto");
 // Initialize Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -48,11 +48,15 @@ async function processImages(pageId, markdown) {
       if (imageUrl) {
         const imageName = path.basename(url.parse(imageUrl).pathname);
         const imageExtension = path.extname(imageName);
-        const rand = Math.random()*1000
+        const rand = Math.random() * 1000;
         const tempPath = path.join(__dirname, `../public/images/temp-${rand}`);
         await downloadImage(imageUrl, tempPath);
         const fileContent = fs.readFileSync(tempPath);
-        const hash = crypto.createHash('md5').update(fileContent).digest('hex').substring(0,8);
+        const hash = crypto
+          .createHash("md5")
+          .update(fileContent)
+          .digest("hex")
+          .substring(0, 8);
         const newImageName = `${hash}${imageExtension}`;
         const imagePath = path.join(
           __dirname,
@@ -76,7 +80,7 @@ async function processImages(pageId, markdown) {
 }
 
 async function exportNotionPagesToMarkdown(pageId) {
-  const response = await notion.pages.retrieve({page_id: pageId})
+  const response = await notion.pages.retrieve({ page_id: pageId });
   const title = response.properties.Name.title.pop().plain_text;
   console.log("Processing: ", title);
   // Convert Notion page to markdown
@@ -102,9 +106,9 @@ async function exportNotionPagesToMarkdown(pageId) {
 async function getPublishedPosts() {
   const response = await notion.search({});
 
-  const promises = response.results.map(result => {
+  const promises = response.results.map((result) => {
     if (
-      result.object === 'page' && 
+      result.object === "page" &&
       result.properties &&
       result.properties.Tags &&
       result.properties.Tags.multi_select &&
@@ -112,7 +116,10 @@ async function getPublishedPosts() {
     ) {
       for (const tag of result.properties.Tags.multi_select) {
         if (tag.name == "Published") {
-          console.log("Publishing: ", result.properties.Name.title.pop().plain_text);
+          console.log(
+            "Publishing: ",
+            result.properties.Name.title.pop().plain_text
+          );
           return exportNotionPagesToMarkdown(result.id);
         }
       }
