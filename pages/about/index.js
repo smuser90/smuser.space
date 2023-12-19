@@ -1,50 +1,49 @@
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function About() {
   const canvasRef = useRef(null);
+  const [context, setContext] = useState(null);
 
-  useEffect(() => {
-    const images = [
-      new Image(),
-      new Image()
-    ];
-
-    images[0].src = "/static/sam-musso.jpg";
-    images[1].src = "/static/sam-solar.png";
-
-    images[0].onload = function() {
+  const draw = () => {
+    if (context) {
       const canvas = canvasRef.current;
-      canvas.width = this.naturalWidth;
-      canvas.height = this.naturalHeight;
-      const context = canvas.getContext('2d');
-    }
-
-    const images = [
-      new Image(),
-      new Image()
-    ];
-
-    images[0].src = "/static/sam-musso.jpg";
-    images[1].src = "/static/sam-solar.png";
-
-    let activeImage = 0;
-    let opacity = 1;
-
-    const draw = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
 
       context.globalAlpha = opacity;
       context.drawImage(images[activeImage], 0, 0, canvas.width, canvas.height);
 
       context.globalAlpha = 1 - opacity;
-      context.drawImage(images[1 - activeImage], 0, 0, canvas.width, canvas.height);
+      context.drawImage(
+        images[1 - activeImage],
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
 
       opacity -= 0.01;
       if (opacity <= 0) {
         opacity = 1;
         activeImage = 1 - activeImage;
       }
+    }
+  };
+
+  useEffect(() => {
+    const images = [new Image(), new Image()];
+
+    images[0].src = "/static/sam-musso.jpg";
+    images[1].src = "/static/sam-solar.png";
+
+    images[0].onload = function () {
+      const canvas = canvasRef.current;
+      canvas.width = this.naturalWidth;
+      canvas.height = this.naturalHeight;
+      setContext(canvas.getContext("2d"));
     };
+
+    let activeImage = 0;
+    let opacity = 1;
 
     const interval = setInterval(draw, 50);
 
@@ -53,14 +52,11 @@ export default function About() {
     };
   }, []);
 
-
   return (
     <div className="container">
       <main>
         <h1 className="title">About Sam Musso</h1>
         <div className="bio-section">
-
-         
           <canvas ref={canvasRef} className="bio-image"></canvas>
 
           <p>
