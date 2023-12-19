@@ -12,7 +12,7 @@ import 'prismjs/components/prism-json' // Import the JSON language component
 import 'prismjs/themes/prism-tomorrow.css' // Choose the theme you prefer
 
 export async function getStaticPaths() {
-    const postsDirectory = path.join(process.cwd(), 'pages/blog');
+    const postsDirectory = path.join(process.cwd(), 'pages/blog/posts');
     const filenames = fs.readdirSync(postsDirectory);
 
     const paths = filenames
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const postsDirectory = path.join(process.cwd(), 'pages/blog');
+    const postsDirectory = path.join(process.cwd(), 'pages/blog/posts');
     console.log(params);
     const filePath = path.join(postsDirectory, `${params.slug}.mdx`);
     const fileContents = fs.readFileSync(filePath, 'utf8');
