@@ -65,25 +65,6 @@ export default function About() {
       }
     };
    
-    useEffect(() => {
-      const images = [new Image(), new Image()];
-   
-      images[0].src = "/static/sam-musso.jpg";
-      images[1].src = "/static/sam-solar.png";
-   
-      images[0].onload = function () {
-        const canvas = canvasRef.current;
-        canvas.width = this.naturalWidth;
-        canvas.height = this.naturalHeight;
-        setContext(canvas.getContext("2d"));
-      };
-   
-      const interval = setInterval(draw, 50);
-   
-      return () => {
-        clearInterval(interval);
-      };
-    }, []);
   
 
     const interval = setInterval(draw, 50);
