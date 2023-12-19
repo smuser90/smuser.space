@@ -10,11 +10,13 @@ export default function About() {
         }}
       >
         <h1 className="title">About Sam Musso</h1>
-        <p className="">
-          I'm your host, Sam Musso. I'm a software engineer, a polyglot, and a
-          tinkerer.
-          <img src="/static/sam-musso.jpg" alt="Sam Musso" id="img-bio" />
-        </p>
+        <div className="bio-section">
+          <img src="/static/sam-musso.jpg" alt="Sam Musso" id="img-bio" className="bio-image" />
+          <p className="">
+            I'm your host, Sam Musso. I'm a software engineer, a polyglot, and a
+            tinkerer.
+          </p>
+        </div>
         <p>
           I studied Computer Engineering at the University of Pittsburgh. Upon
           graduation, I joined the team at Netronome Systems, Inc., where I
