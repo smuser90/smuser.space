@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function About() {
   const [activeImage, setActiveImage] = useState(0);
@@ -81,10 +81,10 @@ export default function About() {
             and in-situ resource utilization.
           </p>
 
+          <h3>
+            <em>Why 'smuser'?</em>
+          </h3>
           <p>
-            <h3>
-              <em>Why 'smuser'?</em>
-            </h3>
             I'm glad you asked. Its inspired by the hacker culture of the early
             unix days of computing. Tron is one of my favorites (not least
             because Sam Flynn) and in a similar style, smuser is just my
