@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ParticlesComponent from '../../components/Particles'
 
 export async function getStaticProps() {
-    const postsDirectory = path.join(process.cwd(), 'pages/blog');
+    const postsDirectory = path.join(process.cwd(), 'pages/blog/posts');
     const filenames = fs.readdirSync(postsDirectory);
 
     const posts = filenames.map(filename => {

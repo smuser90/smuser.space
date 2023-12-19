@@ -46,17 +46,6 @@ export default function BlogPost({ mdxSource }) {
     const parentRef = useRef(null);
     const mdxRef = useRef(null);
 
-    useEffect(() => {
-
-        const headerElement = document.querySelector('.header');
-        if (headerElement) {
-            const parentElement = headerElement.parentElement;
-            if (parentElement) {
-                parentElement.classList.add('blog');
-            }
-        }
-    }, []);
-
     return (
       <div id="mdx-body" ref={parentRef}>
         <MDXRemote ref={mdxRef} {...mdxSource} components={{ Image }}/>
