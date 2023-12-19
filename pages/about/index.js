@@ -1,5 +1,18 @@
+import { useState, useEffect } from 'react';
+
 export default function About() {
-  // Add styles to center the content on the page
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveImage((prevActiveImage) => (prevActiveImage === 0 ? 1 : 0));
+    }, 5000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <div className="container">
       <main>
@@ -9,12 +22,14 @@ export default function About() {
             <img
               src="/static/sam-musso.jpg"
               alt="Sam Musso"
-              className="bio-image active"
+              className={activeImage === 0 ? "bio-image active" : "bio-image"}
+              style={{ transition: "opacity 1s" }}
             />
             <img
               src="/static/sam-solar.png"
               alt="Sam Musso Solar"
-              className="bio-image"
+              className={activeImage === 1 ? "bio-image active" : "bio-image"}
+              style={{ transition: "opacity 1s" }}
             />
           </div>
 
