@@ -4,8 +4,20 @@ export default function About() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    const images = [
+      new Image(),
+      new Image()
+    ];
+
+    images[0].src = "/static/sam-musso.jpg";
+    images[1].src = "/static/sam-solar.png";
+
+    images[0].onload = function() {
+      const canvas = canvasRef.current;
+      canvas.width = this.naturalWidth;
+      canvas.height = this.naturalHeight;
+      const context = canvas.getContext('2d');
+    }
 
     const images = [
       new Image(),
