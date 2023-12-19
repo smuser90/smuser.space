@@ -16,9 +16,9 @@ export async function getStaticPaths() {
     const filenames = fs.readdirSync(postsDirectory);
 
     const paths = filenames
-        .filter(filename => path.extname(filename) === '.md')
+        .filter(filename => path.extname(filename) === '.mdx')
         .map(filename => ({
-            params: { slug: encodeURIComponent(filename.replace(/\.md$/, '')) },
+            params: { slug: filename.replace(/\.mdx$/, '') },
         }));
 
     return { paths, fallback: false };
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const postsDirectory = path.join(process.cwd(), 'pages/blog');
     console.log(params);
-    const filePath = path.join(postsDirectory, `${decodeURIComponent(params.slug)}.mdx`);
+    const filePath = path.join(postsDirectory, `${params.slug}.mdx`);
     const fileContents = fs.readFileSync(filePath, 'utf8');
 
     // Use remark or a similar library to convert Markdown to HTML
