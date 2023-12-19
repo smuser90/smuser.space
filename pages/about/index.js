@@ -12,12 +12,12 @@ export default function About() {
         <h1 className="title">About Sam Musso</h1>
         <div className="bio-section">
           <img src="/static/sam-musso.jpg" alt="Sam Musso" id="img-bio" className="bio-image" />
-          <p className="">
+          <p>
             I'm your host, Sam Musso. I'm a software engineer, a polyglot, and a
             tinkerer.
           </p>
-        </div>
-        <p>
+
+          <p>
           I studied Computer Engineering at the University of Pittsburgh. Upon
           graduation, I joined the team at Netronome Systems, Inc., where I
           worked on testing ASICs for network appliances. These were used for
@@ -67,6 +67,8 @@ export default function About() {
           favorites (not least because Sam Flynn) and in a similar style, smuser
           is just my initials & 'user'.
         </p>
+        </div>
+        
       </main>
     </div>
   );
