@@ -23,7 +23,7 @@ const Header = () => {
       <div className="header-container">
         <div className="header-image">
           <Image
-            src="/images/headshot.jfif"
+            src="/static/headshot.jpg"
             alt="Headshot"
             width={50}
             height={50}
