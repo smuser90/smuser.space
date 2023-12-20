@@ -30,7 +30,7 @@ main
 .icon
   margin: 0 0.5rem
   font-size: 1.5rem
-  transition: color 0.15s ease, border-color 0.15s ease
+  transition: color 0.5s ease, border-color 0.15s ease
   display: inline-block
   width: 1.5rem
 
@@ -67,6 +67,15 @@ main
   display: flex
   justify-content: center
   align-items: center
+  opacity: 0.8
+  #cta
+    opacity: 0
+    margin-left: 1rem
+
+.card-small:hover
+  opacity: 1
+  #cta
+    opacity: 1
 
 .header
   position: relative
@@ -237,6 +246,53 @@ main
     display: block
     height: 40vh
 
+  .image-container
+    width: 100%
+    max-height: 30vh
+    overflow: hidden
+
+  .post-image
+    width: 90%
+    height: 100%
+    object-fit: cover
+
+  .card-large
+    opacity: 0.8
+    margin-bottom: 2rem
+    padding-bottom: 2rem
+    flex: 0 0 calc(50% - 1rem)
+    max-width: 100%
+    min-width: 100%
+    min-height: 35vh
+    background: var(--card-background-color)
+    border-radius: 0.5rem
+    position: relative // Add this line to make the position of #cta relative to .card-large
+    #cta
+      opacity: 0
+      position: absolute
+      top: 1vh
+      right: 2vw
+    p
+      font-size: 1.2rem
+      margin-left: 2.5rem
+
+    h2
+      margin-left: 2.5rem
+
+    img
+      width: auto
+      max-height: 25vh
+      height: auto
+      display: block
+      margin-left: auto
+      margin-right: auto
+      margin-top: 20px
+
+  .card-large:hover
+    opacity: 1
+    #cta
+      opacity: 1
+
 @media (min-width: 800px) // non-mobile specific styles
   h2
     font-size: 1.6rem
@@ -254,8 +310,11 @@ main
     margin-bottom: 1rem
     flex: 0 0 calc(33.33% - 1rem)
     max-width: calc(33.33% - 1rem)
+    #cta
+      opacity: 0
 
   .card-large
+    opacity: 0.8
     margin-bottom: 2rem
     padding-bottom: 2rem
     flex: 0 0 calc(50% - 1rem)
@@ -270,12 +329,16 @@ main
       position: absolute
       top: 1vh
       right: 2vw
+    p
+      font-size: 1.2rem
+      margin-left: 2.5rem
 
     h2
       margin-left: 2.5rem
 
     img
-      width: 90%
+      width: auto
+      max-height: 25vh
       height: auto
       display: block
       margin-left: auto
@@ -283,6 +346,7 @@ main
       margin-top: 20px
 
   .card-large:hover
+    opacity: 1
     #cta
       opacity: 1
 
@@ -313,3 +377,7 @@ main
 @media (min-width: 2200px)
   p
     font-size: 1.3rem
+
+  .icon
+    margin: 0 .5rem
+    width: 3rem

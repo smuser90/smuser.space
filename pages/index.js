@@ -29,18 +29,21 @@ export default function Home() {
 
           <div className="grid">
             <div className="card-small" onClick={() => router.push("/blog")}>
-              <h3>Thoughts &rarr;</h3>
+              <h3>Thoughts</h3>
+              <p id="cta">&rarr;</p>
             </div>
 
             <div className="card-small" onClick={() => router.push("/about")}>
-              <h3>About &rarr;</h3>
+              <h3>About</h3>
+              <p id="cta">&rarr;</p>
             </div>
 
             <div
               className="card-small"
               onClick={() => router.push("/open-source")}
             >
-              <h3>Open Source &rarr;</h3>
+              <h3>Open Source</h3>
+              <p id="cta">&rarr;</p>
             </div>
           </div>
         </div>

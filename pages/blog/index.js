@@ -55,7 +55,6 @@ export default function BlogFeed({ posts }) {
                 >
                   <h2>{post.title}</h2>
                   <p id="cta">&rarr;</p>
-
                   <div className="image-container">
                     <img className="post-image" src={post.headerImage}/>
                   </div>
