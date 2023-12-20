@@ -21,7 +21,6 @@ main
   margin-top: 8vh
   margin-bottom: 8vh
 
-// Styles for social icons
 .social-icons
   display: flex
   justify-content: center
@@ -107,6 +106,41 @@ main
 pre
   border-width: 1px
   border-radius: 0.5rem
+
+.header-container
+  display: flex
+  align-items: center
+
+.header-image
+  width: 50px
+  height: 50px
+  border-radius: 50%
+  overflow: hidden
+
+.cursor-pointer
+  cursor: pointer
+.bio-section
+  display: block
+
+.image-container
+  position: relative
+
+.bio-image
+  float: right
+  margin: 0 0 1em 1em
+  clear: both
+  width: 30vw
+  height: auto
+
+.image-container
+  width: 100%
+  height: 30vh
+  overflow: hidden
+
+.post-image
+  width: 100%
+  height: 100%
+  object-fit: cover
 
 footer
   position: absolute
@@ -223,15 +257,22 @@ main
 
   .card-large
     margin-bottom: 2rem
+    padding-bottom: 2rem
     flex: 0 0 calc(50% - 1rem)
     max-width: calc(50% - 1rem)
     min-width: calc(50% - 1rem)
     min-height: 35vh
     background: var(--card-background-color)
     border-radius: 0.5rem
+    position: relative // Add this line to make the position of #cta relative to .card-large
+    #cta
+      opacity: 0
+      position: absolute
+      top: 1vh
+      right: 2vw
 
     h2
-      margin-left: 1rem
+      margin-left: 2.5rem
 
     img
       width: 90%
@@ -240,6 +281,10 @@ main
       margin-left: auto
       margin-right: auto
       margin-top: 20px
+
+  .card-large:hover
+    #cta
+      opacity: 1
 
   .description
     margin-top: 25vh
@@ -268,28 +313,3 @@ main
 @media (min-width: 2200px)
   p
     font-size: 1.3rem
-
-.header-container
-  display: flex
-  align-items: center
-
-.header-image
-  width: 50px
-  height: 50px
-  border-radius: 50%
-  overflow: hidden
-
-.cursor-pointer
-  cursor: pointer
-.bio-section
-  display: block
-
-.image-container
-  position: relative
-
-.bio-image
-  float: right
-  margin: 0 0 1em 1em
-  clear: both
-  width: 30vw
-  height: auto

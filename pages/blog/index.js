@@ -54,6 +54,8 @@ export default function BlogFeed({ posts }) {
                   onClick={() => router.push(`/blog/${post.slug}`)}
                 >
                   <h2>{post.title}</h2>
+                  <p id="cta">&rarr;</p>
+
                   <div className="image-container">
                     <img className="post-image" src={post.headerImage}/>
                   </div>

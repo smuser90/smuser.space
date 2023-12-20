@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import fs from 'fs';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -24,23 +24,12 @@ export async function getStaticPaths() {
     return { paths, fallback: false };
 }
 
-import grayMatter from 'gray-matter';
 
 export async function getStaticProps({ params }) {
     const postsDirectory = path.join(process.cwd(), 'pages/blog/posts');
     console.log(params);
     const filePath = path.join(postsDirectory, `${params.slug}.mdx`);
     const fileContents = fs.readFileSync(filePath, 'utf8');
-
-    // Parse the MDX file
-    const { content } = grayMatter(fileContents);
-
-    // Find the first image markdown
-    const firstImageMarkdown = content.match(/!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)/);
-    let firstImageUrl = null;
-    if (firstImageMarkdown) {
-        firstImageUrl = firstImageMarkdown[1];
-    }
 
     // Use remark or a similar library to convert Markdown to HTML
     const mdxSource = await serialize(fileContents, {
@@ -51,17 +40,16 @@ export async function getStaticProps({ params }) {
         scope: {},
     });
 
-    return { props: { mdxSource, firstImageUrl } };
+    return { props: { mdxSource } };
 }
 
-export default function BlogPost({ mdxSource, firstImageUrl }) {
+export default function BlogPost({ mdxSource }) {
     const parentRef = useRef(null);
     const mdxRef = useRef(null);
 
     return (
       <div id="mdx-body" ref={parentRef}>
         <MDXRemote ref={mdxRef} {...mdxSource} components={{ Image }}/>
-        {firstImageUrl && <img src={firstImageUrl} alt="First image in the post" />}
       </div>
     );
 }

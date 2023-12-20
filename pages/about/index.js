@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import ParticlesComponent from "../../components/Particles";
 
 export default function About() {
   const canvasRef = useRef(null);
@@ -6,6 +7,13 @@ export default function About() {
   const imagesRef = useRef([]);
 
   useEffect(() => {
+    let activeImage = 1;
+    let lastImage = 0;
+    let opacity = 1;
+    let transitionDuration = 1.2;
+    let steadyStateDuration = 5;
+    let transitionStartTime = Date.now() + steadyStateDuration * 1000;
+
     const loadImages = [
       new Promise((resolve) => {
         const img = new Image();
@@ -17,6 +25,17 @@ export default function About() {
         img.onload = () => resolve(img);
         img.src = "/static/sam-solar.png";
       }),
+
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = "/static/sam-slack.jpg";
+      }),
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = "/static/sam-solar-slack.png";
+      }),
     ];
 
     Promise.all(loadImages).then((loadedImages) => {
@@ -26,12 +45,6 @@ export default function About() {
       contextRef.current = canvas.getContext("2d");
       imagesRef.current = loadedImages;
     });
-
-    let activeImage = 0;
-    let opacity = 1;
-    let transitionDuration = 1.2; // transition duration in seconds
-    let steadyStateDuration = 5; // steady state duration in second
-    let transitionStartTime = Date.now() + steadyStateDuration * 1000;
 
     const draw = () => {
       if (contextRef.current) {
@@ -43,18 +56,15 @@ export default function About() {
         }
 
         let timeElapsed = (Date.now() - transitionStartTime) / 1000;
-        // convert to seconds
 
         if (timeElapsed < transitionDuration) {
-          // we are in transition phase
-          opacity = 1 - Math.pow(0.944, timeElapsed * 1000 / 25);
+          opacity = 1 - Math.pow(0.944, (timeElapsed * 1000) / 25);
         } else if (timeElapsed < transitionDuration + steadyStateDuration) {
-          // we are in steady state phase
           opacity = 1;
         } else {
-          // transition to the next image
           transitionStartTime = Date.now();
-          activeImage = 1 - activeImage;
+          lastImage = activeImage;
+          activeImage = (activeImage + 1) % loadImages.length;
           opacity = 0;
         }
 
@@ -69,7 +79,7 @@ export default function About() {
 
         contextRef.current.globalAlpha = 1 - opacity;
         contextRef.current.drawImage(
-          imagesRef.current[1 - activeImage],
+          imagesRef.current[lastImage],
           0,
           0,
           canvas.width,
@@ -90,12 +100,21 @@ export default function About() {
       <main>
         <h1 className="title">About Sam Musso</h1>
         <div className="bio-section">
-          <canvas ref={canvasRef} className="bio-image"></canvas>
-
+          <canvas ref={canvasRef}></canvas>
           <p>
-            I'm your host, Sam Musso. I'm a software engineer, polyglot, and
-            tinkerer.
+            Hi there, I'm your host Sam Musso. I'm a software engineer,
+            architect, polyglot, and tinkerer. Welcome to smuser space.
           </p>
+          <h3>
+            Why <em>'smuser'?</em>
+          </h3>
+          <p>
+            I'm glad you asked! I really enjoy the culture of *nix computing.
+            Tron is one of my favorites (not least because Sam Flynn) and in a
+            similar style, <em>smuser</em> is just my initials & 'user'.
+          </p>
+
+          <h3>A bit of my background...</h3>
 
           <p>
             I studied Computer Engineering at the University of Pittsburgh. Upon
@@ -139,18 +158,9 @@ export default function About() {
             where I'm expanding my knowledge in Kubernetes, space exploration,
             and in-situ resource utilization.
           </p>
-
-          <h3>
-            <em>Why 'smuser'?</em>
-          </h3>
-          <p>
-            I'm glad you asked. Its inspired by the hacker culture of the early
-            unix days of computing. Tron is one of my favorites (not least
-            because Sam Flynn) and in a similar style, smuser is just my
-            initials & 'user'.
-          </p>
         </div>
       </main>
+      <ParticlesComponent />
     </div>
   );
 }
