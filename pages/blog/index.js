@@ -17,7 +17,7 @@ export async function getStaticProps() {
     const { content } = grayMatter(fileContents);
     // Find the first image markdown
     const firstImageMarkdown = content.match(
-      /!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)/
+      /<Image src="(.*?)" alt=".*?" width=".*?" height=".*?" sizes=".*?" className=".*?" \/>/
     );
     let firstImageUrl = null;
     if (firstImageMarkdown) {
