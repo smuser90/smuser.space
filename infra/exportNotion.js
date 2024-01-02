@@ -64,7 +64,6 @@ async function processImages(pageId, markdown) {
           newImageName
         );
         fs.renameSync(tempPath, imagePath);
-        const metadata = await sharp(imagePath).metadata();
         const absoluteUrl = `/images/${newImageName}`;
         // Replace the image URL in the markdown with the local path
         const regex = new RegExp(`!\\[${imageName}\\]\\(https://[^)]+\\)`, "g");

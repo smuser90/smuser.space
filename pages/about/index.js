@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import ParticlesComponent from "../../components/Particles";
 
 export default function About() {
@@ -100,7 +100,7 @@ export default function About() {
       <main>
         <h1 className="title">About Sam Musso</h1>
         <div className="bio-section">
-          <canvas ref={canvasRef}></canvas>
+          <canvas ref={canvasRef} id='about-canvas'/>
           <p>
             Hi there, I'm your host Sam Musso. I'm a software engineer,
             architect, polyglot, and tinkerer. Welcome to smuser space.
