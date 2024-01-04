@@ -50,6 +50,9 @@ export default function Home() {
       </main>
 
       <ParticlesComponent />
+      <div className="resume-download">
+        <a href="/static/Sam_Musso_Resume.pdf" download>Download My Resume</a>
+      </div>
       <Script src="https://plausible.io/js/script.js" strategy="lazyOnload" />
     </div>
   );
