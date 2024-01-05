@@ -40,6 +40,11 @@ async function downloadImage(imageUrl, imagePath) {
   });
 }
 
+async function processVideos(markdown) {
+  const youtubeRegex = /\[([^\]]+)\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+))\)/g;
+  return markdown.replace(youtubeRegex, '<YouTube videoId="$3" />');
+}
+
 async function processImages(pageId, markdown) {
   const pageContent = await notion.blocks.children.list({ block_id: pageId });
   const promises = pageContent.results.map(async (block) => {
@@ -86,7 +91,8 @@ async function exportNotionPagesToMarkdown(pageId) {
   const mdBlocks = await n2m.pageToMarkdown(pageId);
   const markdown = n2m.toMarkdownString(mdBlocks).parent;
   // Additional processing for images
-  const enrichedMarkdown = await processImages(pageId, markdown);
+  const markdownWithImages = await processImages(pageId, markdown);
+  const enrichedMarkdown = processVideos(markdownWithImages);
 
   // Write markdown to a file in the /blog directory
   const filePath = path.join(__dirname, "../pages/blog/posts", `${title}.mdx`);
