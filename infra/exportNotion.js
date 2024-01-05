@@ -49,7 +49,7 @@ async function processVideos(markdown) {
       let videoUrl = videoEmbedMarkdown.substring(videoStartIndex + 8, videoEndIndex);
       let videoId = videoUrl.split("v=")[1].split("&")[0];
       let time = videoUrl.includes("&t=") ? videoUrl.split("&t=")[1] : 0;
-      let iframe = `<iframe src='https://www.youtube.com/embed/${videoId}?start=${time}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'></iframe>`;
+      let iframe = `<div class="video-container"><iframe src='https://www.youtube.com/embed/${videoId}?start=${time}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'></iframe></div>`;
       videoEmbedMarkdown = videoEmbedMarkdown.substring(0, videoStartIndex) + iframe + videoEmbedMarkdown.substring(videoEndIndex + 1);
     }
     videoStartIndex = videoEmbedMarkdown.indexOf("[video](", videoEndIndex);
