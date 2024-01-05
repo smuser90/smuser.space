@@ -41,8 +41,8 @@ async function downloadImage(imageUrl, imagePath) {
 }
 
 async function processVideos(markdown) {
-  const youtubeRegex = /\[([^\]]+)\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+))\)/g;
-  return markdown.replace(youtubeRegex, '<YouTube videoId="$3" />');
+  const youtubeRegex = /\[video\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+))\)/g;
+  return markdown.replace(youtubeRegex, '<YouTube videoId="$2" />');
 }
 
 async function processImages(pageId, markdown) {
