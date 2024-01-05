@@ -99,12 +99,18 @@ export default function About() {
     <div className="container">
       <main>
         <h1 className="title">About Sam Musso</h1>
+        <div className="resume-download">
+            <a href="/static/Sam_Musso_Resume.pdf" download>
+            ⇓ Resume / CV
+            </a>
+          </div>
         <div className="bio-section">
           <canvas ref={canvasRef} id='about-canvas'/>
           <p>
             Hi there, I'm your host Sam Musso. I'm a software engineer,
             architect, polyglot, and tinkerer. Welcome to smuser space.
           </p>
+          
           <h3>
             Why <em>'smuser'?</em>
           </h3>
