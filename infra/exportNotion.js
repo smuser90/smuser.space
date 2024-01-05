@@ -42,9 +42,13 @@ async function downloadImage(imageUrl, imagePath) {
 
 async function processVideos(markdown) {
   const youtubeRegex = /\[video\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+)(?:&t=(\d+))?)\)/g;
-  return markdown.replace(youtubeRegex, (match, url, videoId, time) => {
+  const videoEmbedMarkdown = markdown.replace(youtubeRegex, (match, url, videoId, time) => {
+    console.log("Found a match!");
     return `<iframe src='https://www.youtube.com/embed/${videoId}?start=${time || 0}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'/>`;
   });
+
+  console.log("Updated markdown: ", videoEmbedMarkdown);
+  return videoEmbedMarkdown;
 }
 
 async function processImages(pageId, markdown) {
@@ -94,7 +98,7 @@ async function exportNotionPagesToMarkdown(pageId) {
   const markdown = n2m.toMarkdownString(mdBlocks).parent;
   // Additional processing for images
   const markdownWithImages = await processImages(pageId, markdown);
-  const enrichedMarkdown = processVideos(markdownWithImages);
+  const enrichedMarkdown = await processVideos(markdownWithImages);
 
   // Write markdown to a file in the /blog directory
   const filePath = path.join(__dirname, "../pages/blog/posts", `${title}.mdx`);
