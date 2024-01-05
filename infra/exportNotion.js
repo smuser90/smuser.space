@@ -41,11 +41,19 @@ async function downloadImage(imageUrl, imagePath) {
 }
 
 async function processVideos(markdown) {
-  const youtubeRegex = "/\[video\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+)(?:&t=(\d+))?\)/g";
-  const videoEmbedMarkdown = markdown.replace(youtubeRegex, (match, url, videoId, time) => {
-    console.log("Found a match!");
-    return `<iframe src='https://www.youtube.com/embed/${videoId}?start=${time || 0}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'/>`;
-  });
+  let videoEmbedMarkdown = markdown;
+  let videoStartIndex = videoEmbedMarkdown.indexOf("[video](");
+  while (videoStartIndex !== -1) {
+    let videoEndIndex = videoEmbedMarkdown.indexOf(")", videoStartIndex);
+    if (videoEndIndex !== -1) {
+      let videoUrl = videoEmbedMarkdown.substring(videoStartIndex + 8, videoEndIndex);
+      let videoId = videoUrl.split("v=")[1].split("&")[0];
+      let time = videoUrl.includes("&t=") ? videoUrl.split("&t=")[1] : 0;
+      let iframe = `<iframe src='https://www.youtube.com/embed/${videoId}?start=${time}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'/>`;
+      videoEmbedMarkdown = videoEmbedMarkdown.substring(0, videoStartIndex) + iframe + videoEmbedMarkdown.substring(videoEndIndex + 1);
+    }
+    videoStartIndex = videoEmbedMarkdown.indexOf("[video](", videoEndIndex);
+  }
 
   console.log("Updated markdown: ", videoEmbedMarkdown);
   return videoEmbedMarkdown;
