@@ -41,7 +41,7 @@ async function downloadImage(imageUrl, imagePath) {
 }
 
 async function processVideos(markdown) {
-  const youtubeRegex = /\[video\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+)(?:&t=(\d+))?\)/g;
+  const youtubeRegex = "/\[video\]\((https?:\/\/www\.youtube\.com\/watch\?v=([^\s&]+)(?:&t=(\d+))?\)/g";
   const videoEmbedMarkdown = markdown.replace(youtubeRegex, (match, url, videoId, time) => {
     console.log("Found a match!");
     return `<iframe src='https://www.youtube.com/embed/${videoId}?start=${time || 0}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen title='video'/>`;
