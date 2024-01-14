@@ -4,21 +4,15 @@ export default function OpenSource() {
   const projects = [
     {
       name: "Alpine Test Harness",
-      description: "A test harness for Alpine.js components",
+      description: "A harness for testing embedded devices with serial input",
       imageUrl: "/static/alpine-tester.png",
-      link: "https://github.com/smuser90",
+      link: "https://github.com/smuser90/Alpine_tester",
     },
     {
-      name: "Mesh Viewer",
+      name: "Point Cloud Mesh Viewer",
       description: "A simple mesh viewer",
       imageUrl: "/static/mesh-viewer.png",
-      link: "https://github.com/smuser90",
-    },
-    {
-      name: "QtWebEngine",
-      description: "A QtWebEngine based browser",
-      imageUrl: "/static/webengine-view.png",
-      link: "https://github.com/smuser90",
+      link: "https://github.com/smuser90/pcl-viewer",
     },
   ];
   return (
